@@ -6,6 +6,8 @@
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconFile</key>
+	<string>brow-helper.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -13,22 +15,38 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
+	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 Tim Schröder. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>Brow</string>
-	<key>NSPrefPaneIconFile</key>
-	<string>brow.icns</string>
-	<key>NSPrefPaneIconLabel</key>
-	<string>Brow</string>
+	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>Brow</string>
+	<string>NSApplication</string>
+	<key>LSBackgroundOnly</key>
+	<true/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>item.content</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>com.timschroeder.brow</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>New item</key>
+				<string>com.apple.safari.bookmark</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

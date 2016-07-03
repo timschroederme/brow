@@ -7,22 +7,138 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2236A48B1D1ED65500C102CE /* Brow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2236A48A1D1ED65500C102CE /* Brow.h */; };
-		2236A48D1D1ED65500C102CE /* Brow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2236A48C1D1ED65500C102CE /* Brow.m */; };
-		2236A48F1D1ED65500C102CE /* Brow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2236A48E1D1ED65500C102CE /* Brow.tiff */; };
+		220382D81D1F24AC00087E41 /* brow.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 220382D71D1F24AC00087E41 /* brow.iconset */; };
+		220383181D200DCB00087E41 /* Brow.h in Headers */ = {isa = PBXBuildFile; fileRef = 220383161D200DCB00087E41 /* Brow.h */; };
+		220383191D200DCB00087E41 /* Brow.m in Sources */ = {isa = PBXBuildFile; fileRef = 220383171D200DCB00087E41 /* Brow.m */; };
+		220383551D20286E00087E41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 220383541D20286E00087E41 /* AppDelegate.m */; };
+		220383581D20286E00087E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 220383571D20286E00087E41 /* main.m */; };
+		2203835A1D20286E00087E41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 220383591D20286E00087E41 /* Assets.xcassets */; };
+		2203835D1D20286E00087E41 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2203835B1D20286E00087E41 /* MainMenu.xib */; };
+		220383691D204FF400087E41 /* brow-helper.app in Resources */ = {isa = PBXBuildFile; fileRef = 220383511D20286E00087E41 /* brow-helper.app */; };
+		2203836B1D2055FB00087E41 /* com.timschroeder.brow-helper.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2203836A1D2055FB00087E41 /* com.timschroeder.brow-helper.plist */; };
+		2203836D1D2066EC00087E41 /* brow-helper.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 2203836C1D2066EC00087E41 /* brow-helper.iconset */; };
+		220AC2351D27F42A003C8079 /* TSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 220AC2341D27F42A003C8079 /* TSStream.m */; };
+		220AC25C1D28792F003C8079 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 220AC25B1D28792F003C8079 /* main.c */; };
+		220AC25E1D28792F003C8079 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 220AC25D1D28792F003C8079 /* GetMetadataForFile.m */; };
+		220AC2611D28792F003C8079 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 220AC2601D28792F003C8079 /* MySpotlightImporter.m */; };
+		220AC26E1D2928C4003C8079 /* brow-importer.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 220AC2581D28792F003C8079 /* brow-importer.mdimporter */; };
+		220AC2701D292F5A003C8079 /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240FF1D1D24221E00888874 /* TSLogger.m */; };
+		221452CF1D21C2CF0065494E /* TSMonitorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452CE1D21C2CF0065494E /* TSMonitorController.m */; };
+		221452D21D21C71F0065494E /* TSBrowserConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452D11D21C71F0065494E /* TSBrowserConnector.m */; };
+		221452D71D21CD1E0065494E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 221452D61D21CD1E0065494E /* AppKit.framework */; };
+		221452D91D21CD930065494E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 221452D81D21CD930065494E /* Cocoa.framework */; };
+		221452DC1D21CE430065494E /* TSBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452DB1D21CE430065494E /* TSBookmark.m */; };
+		221452DF1D21CE940065494E /* TSChromeConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452DE1D21CE940065494E /* TSChromeConnector.m */; };
+		221452E21D21CEB50065494E /* TSFirefoxConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452E11D21CEB50065494E /* TSFirefoxConnector.m */; };
+		221452E51D21CEE10065494E /* TSSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452E41D21CEE10065494E /* TSSyncController.m */; };
+		221452E91D21CFD60065494E /* NSURL+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 221452E81D21CFD60065494E /* NSURL+Extensions.m */; };
+		2214530E1D21D1540065494E /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 221453041D21D1540065494E /* FMDatabase.m */; };
+		2214530F1D21D1540065494E /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 221453061D21D1540065494E /* FMDatabaseAdditions.m */; };
+		221453101D21D1540065494E /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 221453081D21D1540065494E /* FMDatabasePool.m */; };
+		221453111D21D1540065494E /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2214530A1D21D1540065494E /* FMDatabaseQueue.m */; };
+		221453121D21D1540065494E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2214530D1D21D1540065494E /* FMResultSet.m */; };
 		2236A4921D1ED65500C102CE /* Brow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2236A4901D1ED65500C102CE /* Brow.xib */; };
+		2236A49B1D1ED6F100C102CE /* brow-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2236A4991D1ED6F100C102CE /* brow-icon@2x.png */; };
+		2236A49C1D1ED6F100C102CE /* brow-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2236A49A1D1ED6F100C102CE /* brow-icon.png */; };
+		2240FEFC1D22FDE700888874 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240FEFB1D22FDE700888874 /* libsqlite3.tbd */; };
+		2240FF1E1D24221E00888874 /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240FF1D1D24221E00888874 /* TSLogger.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		220383621D2028FB00087E41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2236A47E1D1ED65500C102CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 220383501D20286E00087E41;
+			remoteInfo = "brow-helper";
+		};
+		220AC26C1D2928B7003C8079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2236A47E1D1ED65500C102CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 220AC2571D28792F003C8079;
+			remoteInfo = "brow-importer";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		220382D71D1F24AC00087E41 /* brow.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = brow.iconset; sourceTree = "<group>"; };
+		220383161D200DCB00087E41 /* Brow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brow.h; sourceTree = "<group>"; };
+		220383171D200DCB00087E41 /* Brow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brow.m; sourceTree = "<group>"; };
+		220383511D20286E00087E41 /* brow-helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brow-helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		220383531D20286E00087E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		220383541D20286E00087E41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		220383571D20286E00087E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		220383591D20286E00087E41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2203835C1D20286E00087E41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2203835E1D20286E00087E41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2203836A1D2055FB00087E41 /* com.timschroeder.brow-helper.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "com.timschroeder.brow-helper.plist"; sourceTree = "<group>"; };
+		2203836C1D2066EC00087E41 /* brow-helper.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = "brow-helper.iconset"; path = "Brow/brow-helper.iconset"; sourceTree = SOURCE_ROOT; };
+		220AC2331D27F42A003C8079 /* TSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSStream.h; sourceTree = "<group>"; };
+		220AC2341D27F42A003C8079 /* TSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSStream.m; sourceTree = "<group>"; };
+		220AC2581D28792F003C8079 /* brow-importer.mdimporter */ = {isa = PBXFileReference; explicitFileType = "wrapper.spotlight-importer"; includeInIndex = 0; path = "brow-importer.mdimporter"; sourceTree = BUILT_PRODUCTS_DIR; };
+		220AC25B1D28792F003C8079 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		220AC25D1D28792F003C8079 /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
+		220AC25F1D28792F003C8079 /* MySpotlightImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
+		220AC2601D28792F003C8079 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
+		220AC2621D28792F003C8079 /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
+		220AC2631D28792F003C8079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		221452CD1D21C2CF0065494E /* TSMonitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMonitorController.h; sourceTree = "<group>"; };
+		221452CE1D21C2CF0065494E /* TSMonitorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMonitorController.m; sourceTree = "<group>"; };
+		221452D01D21C71F0065494E /* TSBrowserConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBrowserConnector.h; sourceTree = "<group>"; };
+		221452D11D21C71F0065494E /* TSBrowserConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBrowserConnector.m; sourceTree = "<group>"; };
+		221452D31D21C7860065494E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		221452D61D21CD1E0065494E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		221452D81D21CD930065494E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		221452DA1D21CE430065494E /* TSBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBookmark.h; sourceTree = "<group>"; };
+		221452DB1D21CE430065494E /* TSBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBookmark.m; sourceTree = "<group>"; };
+		221452DD1D21CE940065494E /* TSChromeConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSChromeConnector.h; sourceTree = "<group>"; };
+		221452DE1D21CE940065494E /* TSChromeConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSChromeConnector.m; sourceTree = "<group>"; };
+		221452E01D21CEB50065494E /* TSFirefoxConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSFirefoxConnector.h; sourceTree = "<group>"; };
+		221452E11D21CEB50065494E /* TSFirefoxConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSFirefoxConnector.m; sourceTree = "<group>"; };
+		221452E31D21CEE10065494E /* TSSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSyncController.h; sourceTree = "<group>"; };
+		221452E41D21CEE10065494E /* TSSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSyncController.m; sourceTree = "<group>"; };
+		221452E71D21CFD60065494E /* NSURL+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Extensions.h"; sourceTree = "<group>"; };
+		221452E81D21CFD60065494E /* NSURL+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Extensions.m"; sourceTree = "<group>"; };
+		221453031D21D1540065494E /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabase.h"; sourceTree = "<group>"; };
+		221453041D21D1540065494E /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabase.m"; sourceTree = "<group>"; };
+		221453051D21D1540065494E /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseAdditions.h"; sourceTree = "<group>"; };
+		221453061D21D1540065494E /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseAdditions.m"; sourceTree = "<group>"; };
+		221453071D21D1540065494E /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabasePool.h"; sourceTree = "<group>"; };
+		221453081D21D1540065494E /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabasePool.m"; sourceTree = "<group>"; };
+		221453091D21D1540065494E /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseQueue.h"; sourceTree = "<group>"; };
+		2214530A1D21D1540065494E /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseQueue.m"; sourceTree = "<group>"; };
+		2214530B1D21D1540065494E /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = "../../../../Downloads/fmdb-master/src/fmdb/FMDB.h"; sourceTree = "<group>"; };
+		2214530C1D21D1540065494E /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = "../../../../Downloads/fmdb-master/src/fmdb/FMResultSet.h"; sourceTree = "<group>"; };
+		2214530D1D21D1540065494E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = "../../../../Downloads/fmdb-master/src/fmdb/FMResultSet.m"; sourceTree = "<group>"; };
 		2236A4871D1ED65500C102CE /* Brow.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Brow.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
-		2236A48A1D1ED65500C102CE /* Brow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Brow.h; sourceTree = "<group>"; };
-		2236A48C1D1ED65500C102CE /* Brow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Brow.m; sourceTree = "<group>"; };
-		2236A48E1D1ED65500C102CE /* Brow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Brow.tiff; sourceTree = "<group>"; };
 		2236A4911D1ED65500C102CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Brow.xib; sourceTree = "<group>"; };
 		2236A4931D1ED65500C102CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2236A4991D1ED6F100C102CE /* brow-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brow-icon@2x.png"; sourceTree = "<group>"; };
+		2236A49A1D1ED6F100C102CE /* brow-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brow-icon.png"; sourceTree = "<group>"; };
+		2240FEFB1D22FDE700888874 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		2240FF1C1D24221E00888874 /* TSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSLogger.h; path = "brow-helper/TSLogger.h"; sourceTree = "<group>"; };
+		2240FF1D1D24221E00888874 /* TSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSLogger.m; path = "brow-helper/TSLogger.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2203834E1D20286E00087E41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2240FEFC1D22FDE700888874 /* libsqlite3.tbd in Frameworks */,
+				221452D91D21CD930065494E /* Cocoa.framework in Frameworks */,
+				221452D71D21CD1E0065494E /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		220AC2551D28792F003C8079 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2236A4831D1ED65500C102CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,10 +149,119 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220383521D20286E00087E41 /* brow-helper */ = {
+			isa = PBXGroup;
+			children = (
+				220AC2531D2817DE003C8079 /* Models */,
+				2240FEFD1D23182B00888874 /* Extensions */,
+				221453021D21D1010065494E /* FMDB */,
+				221452D31D21C7860065494E /* Constants.h */,
+				221452E31D21CEE10065494E /* TSSyncController.h */,
+				221452E41D21CEE10065494E /* TSSyncController.m */,
+				221452D01D21C71F0065494E /* TSBrowserConnector.h */,
+				221452D11D21C71F0065494E /* TSBrowserConnector.m */,
+				221452DD1D21CE940065494E /* TSChromeConnector.h */,
+				221452DE1D21CE940065494E /* TSChromeConnector.m */,
+				221452E01D21CEB50065494E /* TSFirefoxConnector.h */,
+				221452E11D21CEB50065494E /* TSFirefoxConnector.m */,
+				221452CD1D21C2CF0065494E /* TSMonitorController.h */,
+				221452CE1D21C2CF0065494E /* TSMonitorController.m */,
+				220383531D20286E00087E41 /* AppDelegate.h */,
+				220383541D20286E00087E41 /* AppDelegate.m */,
+				2203836C1D2066EC00087E41 /* brow-helper.iconset */,
+				220383591D20286E00087E41 /* Assets.xcassets */,
+				2203835B1D20286E00087E41 /* MainMenu.xib */,
+				2203835E1D20286E00087E41 /* Info.plist */,
+				220383561D20286E00087E41 /* Supporting Files */,
+			);
+			path = "brow-helper";
+			sourceTree = "<group>";
+		};
+		220383561D20286E00087E41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				220383571D20286E00087E41 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		220AC2531D2817DE003C8079 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				220AC2331D27F42A003C8079 /* TSStream.h */,
+				220AC2341D27F42A003C8079 /* TSStream.m */,
+				221452DA1D21CE430065494E /* TSBookmark.h */,
+				221452DB1D21CE430065494E /* TSBookmark.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		220AC2591D28792F003C8079 /* brow-importer */ = {
+			isa = PBXGroup;
+			children = (
+				220AC25D1D28792F003C8079 /* GetMetadataForFile.m */,
+				220AC25F1D28792F003C8079 /* MySpotlightImporter.h */,
+				220AC2601D28792F003C8079 /* MySpotlightImporter.m */,
+				220AC2621D28792F003C8079 /* Importer Read Me.txt */,
+				220AC2631D28792F003C8079 /* Info.plist */,
+				220AC25A1D28792F003C8079 /* Supporting Files */,
+			);
+			path = "brow-importer";
+			sourceTree = "<group>";
+		};
+		220AC25A1D28792F003C8079 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				220AC25B1D28792F003C8079 /* main.c */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		220AC26F1D292F0F003C8079 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				2240FF1C1D24221E00888874 /* TSLogger.h */,
+				2240FF1D1D24221E00888874 /* TSLogger.m */,
+			);
+			name = Logging;
+			sourceTree = "<group>";
+		};
+		221452EA1D21D0110065494E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2240FEFB1D22FDE700888874 /* libsqlite3.tbd */,
+				221452D81D21CD930065494E /* Cocoa.framework */,
+				221452D61D21CD1E0065494E /* AppKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		221453021D21D1010065494E /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				221453031D21D1540065494E /* FMDatabase.h */,
+				221453041D21D1540065494E /* FMDatabase.m */,
+				221453051D21D1540065494E /* FMDatabaseAdditions.h */,
+				221453061D21D1540065494E /* FMDatabaseAdditions.m */,
+				221453071D21D1540065494E /* FMDatabasePool.h */,
+				221453081D21D1540065494E /* FMDatabasePool.m */,
+				221453091D21D1540065494E /* FMDatabaseQueue.h */,
+				2214530A1D21D1540065494E /* FMDatabaseQueue.m */,
+				2214530B1D21D1540065494E /* FMDB.h */,
+				2214530C1D21D1540065494E /* FMResultSet.h */,
+				2214530D1D21D1540065494E /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
 		2236A47D1D1ED65500C102CE = {
 			isa = PBXGroup;
 			children = (
+				220AC26F1D292F0F003C8079 /* Logging */,
 				2236A4891D1ED65500C102CE /* Brow */,
+				220383521D20286E00087E41 /* brow-helper */,
+				220AC2591D28792F003C8079 /* brow-importer */,
+				221452EA1D21D0110065494E /* Frameworks */,
 				2236A4881D1ED65500C102CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				2236A4871D1ED65500C102CE /* Brow.prefPane */,
+				220383511D20286E00087E41 /* brow-helper.app */,
+				220AC2581D28792F003C8079 /* brow-importer.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,13 +279,25 @@
 		2236A4891D1ED65500C102CE /* Brow */ = {
 			isa = PBXGroup;
 			children = (
-				2236A48A1D1ED65500C102CE /* Brow.h */,
-				2236A48C1D1ED65500C102CE /* Brow.m */,
-				2236A48E1D1ED65500C102CE /* Brow.tiff */,
 				2236A4901D1ED65500C102CE /* Brow.xib */,
 				2236A4931D1ED65500C102CE /* Info.plist */,
+				2236A4991D1ED6F100C102CE /* brow-icon@2x.png */,
+				2236A49A1D1ED6F100C102CE /* brow-icon.png */,
+				220382D71D1F24AC00087E41 /* brow.iconset */,
+				220383161D200DCB00087E41 /* Brow.h */,
+				220383171D200DCB00087E41 /* Brow.m */,
+				2203836A1D2055FB00087E41 /* com.timschroeder.brow-helper.plist */,
 			);
 			path = Brow;
+			sourceTree = "<group>";
+		};
+		2240FEFD1D23182B00888874 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				221452E71D21CFD60065494E /* NSURL+Extensions.h */,
+				221452E81D21CFD60065494E /* NSURL+Extensions.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,13 +307,47 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2236A48B1D1ED65500C102CE /* Brow.h in Headers */,
+				220383181D200DCB00087E41 /* Brow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		220383501D20286E00087E41 /* brow-helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2203835F1D20286E00087E41 /* Build configuration list for PBXNativeTarget "brow-helper" */;
+			buildPhases = (
+				2203834D1D20286E00087E41 /* Sources */,
+				2203834E1D20286E00087E41 /* Frameworks */,
+				2203834F1D20286E00087E41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "brow-helper";
+			productName = "brow-helper";
+			productReference = 220383511D20286E00087E41 /* brow-helper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		220AC2571D28792F003C8079 /* brow-importer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 220AC2671D28792F003C8079 /* Build configuration list for PBXNativeTarget "brow-importer" */;
+			buildPhases = (
+				220AC2541D28792F003C8079 /* Sources */,
+				220AC2551D28792F003C8079 /* Frameworks */,
+				220AC2561D28792F003C8079 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "brow-importer";
+			productName = "brow-importer";
+			productReference = 220AC2581D28792F003C8079 /* brow-importer.mdimporter */;
+			productType = "com.apple.product-type.spotlight-importer";
+		};
 		2236A4861D1ED65500C102CE /* Brow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2236A4961D1ED65500C102CE /* Build configuration list for PBXNativeTarget "Brow" */;
@@ -87,6 +360,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				220AC26D1D2928B7003C8079 /* PBXTargetDependency */,
+				220383631D2028FB00087E41 /* PBXTargetDependency */,
 			);
 			name = Brow;
 			productName = Brow;
@@ -102,6 +377,12 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Tim Schröder";
 				TargetAttributes = {
+					220383501D20286E00087E41 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					220AC2571D28792F003C8079 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					2236A4861D1ED65500C102CE = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -121,16 +402,40 @@
 			projectRoot = "";
 			targets = (
 				2236A4861D1ED65500C102CE /* Brow */,
+				220383501D20286E00087E41 /* brow-helper */,
+				220AC2571D28792F003C8079 /* brow-importer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2203834F1D20286E00087E41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2203835A1D20286E00087E41 /* Assets.xcassets in Resources */,
+				2203835D1D20286E00087E41 /* MainMenu.xib in Resources */,
+				2203836D1D2066EC00087E41 /* brow-helper.iconset in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		220AC2561D28792F003C8079 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2236A4851D1ED65500C102CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2236A48F1D1ED65500C102CE /* Brow.tiff in Resources */,
+				220AC26E1D2928C4003C8079 /* brow-importer.mdimporter in Resources */,
+				220383691D204FF400087E41 /* brow-helper.app in Resources */,
+				2236A49C1D1ED6F100C102CE /* brow-icon.png in Resources */,
+				2236A49B1D1ED6F100C102CE /* brow-icon@2x.png in Resources */,
+				2203836B1D2055FB00087E41 /* com.timschroeder.brow-helper.plist in Resources */,
+				220382D81D1F24AC00087E41 /* brow.iconset in Resources */,
 				2236A4921D1ED65500C102CE /* Brow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,17 +443,72 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2203834D1D20286E00087E41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				221453101D21D1540065494E /* FMDatabasePool.m in Sources */,
+				221452E21D21CEB50065494E /* TSFirefoxConnector.m in Sources */,
+				221453111D21D1540065494E /* FMDatabaseQueue.m in Sources */,
+				2214530E1D21D1540065494E /* FMDatabase.m in Sources */,
+				2240FF1E1D24221E00888874 /* TSLogger.m in Sources */,
+				2214530F1D21D1540065494E /* FMDatabaseAdditions.m in Sources */,
+				221452DF1D21CE940065494E /* TSChromeConnector.m in Sources */,
+				221453121D21D1540065494E /* FMResultSet.m in Sources */,
+				220AC2351D27F42A003C8079 /* TSStream.m in Sources */,
+				220383581D20286E00087E41 /* main.m in Sources */,
+				221452DC1D21CE430065494E /* TSBookmark.m in Sources */,
+				221452D21D21C71F0065494E /* TSBrowserConnector.m in Sources */,
+				221452E51D21CEE10065494E /* TSSyncController.m in Sources */,
+				220383551D20286E00087E41 /* AppDelegate.m in Sources */,
+				221452E91D21CFD60065494E /* NSURL+Extensions.m in Sources */,
+				221452CF1D21C2CF0065494E /* TSMonitorController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		220AC2541D28792F003C8079 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				220AC2611D28792F003C8079 /* MySpotlightImporter.m in Sources */,
+				220AC25C1D28792F003C8079 /* main.c in Sources */,
+				220AC25E1D28792F003C8079 /* GetMetadataForFile.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2236A4821D1ED65500C102CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2236A48D1D1ED65500C102CE /* Brow.m in Sources */,
+				220AC2701D292F5A003C8079 /* TSLogger.m in Sources */,
+				220383191D200DCB00087E41 /* Brow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		220383631D2028FB00087E41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 220383501D20286E00087E41 /* brow-helper */;
+			targetProxy = 220383621D2028FB00087E41 /* PBXContainerItemProxy */;
+		};
+		220AC26D1D2928B7003C8079 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 220AC2571D28792F003C8079 /* brow-importer */;
+			targetProxy = 220AC26C1D2928B7003C8079 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		2203835B1D20286E00087E41 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2203835C1D20286E00087E41 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		2236A4901D1ED65500C102CE /* Brow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -160,6 +520,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		220383601D20286E00087E41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "brow-helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		220383611D20286E00087E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "brow-helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		220AC2681D28792F003C8079 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "brow-importer/Info.plist";
+				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
+				LIBRARY_STYLE = BUNDLE;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-importer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Debug;
+		};
+		220AC2691D28792F003C8079 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "brow-importer/Info.plist";
+				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
+				LIBRARY_STYLE = BUNDLE;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-importer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
 		2236A4941D1ED65500C102CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -178,9 +596,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -222,9 +641,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -244,11 +664,15 @@
 		2236A4971D1ED65500C102CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Brow/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timschroeder.Brow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Debug;
@@ -256,9 +680,12 @@
 		2236A4981D1ED65500C102CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Brow/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timschroeder.Brow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = prefPane;
@@ -268,6 +695,23 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2203835F1D20286E00087E41 /* Build configuration list for PBXNativeTarget "brow-helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				220383601D20286E00087E41 /* Debug */,
+				220383611D20286E00087E41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		220AC2671D28792F003C8079 /* Build configuration list for PBXNativeTarget "brow-importer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				220AC2681D28792F003C8079 /* Debug */,
+				220AC2691D28792F003C8079 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		2236A4811D1ED65500C102CE /* Build configuration list for PBXProject "Brow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -284,6 +728,7 @@
 				2236A4981D1ED65500C102CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
