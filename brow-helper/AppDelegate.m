@@ -36,4 +36,10 @@
     [monitorController stopChromeMonitoring];
 }
 
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+    TSLog (@"brow-helper should open %@", filename);
+    return YES;
+}
+
 @end

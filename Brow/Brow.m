@@ -8,6 +8,8 @@
 
 #import "Brow.h"
 #import "TSLogger.h"
+#import <Foundation/Foundation.h>
+#import <ApplicationServices/ApplicationServices.h>
 
 @implementation Brow
 
@@ -98,6 +100,8 @@
     TSLog (@"ImporterBundlePath: %@", importerBundlePath);
     TSLog (@"spotlightPath: %@", spotlightPath);
     [self copyFolderAtPath:importerBundlePath toDestinationFolderAtPath:spotlightPath];
+    TSLog (@"Activating Spotlight importer..");
+    // TODO: /usr/bin/mdimport -r ~/Library/Spotlight/..
 }
 
 #pragma mark -
@@ -115,7 +119,7 @@
 
 -(NSString*)helperAppPath
 {
-    NSString *helperPath = [NSString stringWithFormat:@"%@/Contents/Resources/brow-helper.app",
+    NSString *helperPath = [NSString stringWithFormat:@"%@/Contents/Resources/Brow.app",
                             [[self bundle] bundlePath]];
     return (helperPath);
 }
@@ -144,17 +148,32 @@
 -(void)startHelper
 {
     // Remove plist file
+    TSLog (@"Remove launchd plist file");
     [self removelaunchdPlistFile];
     
     // Copy plist file
+    TSLog (@"Write new launchd plist file");
     [[self helperPlist] writeToURL:[NSURL fileURLWithPath:self.launchdPlistPath] atomically:YES];
         
     // Load brow-helper agent in launchd (will start automatically)
+    TSLog (@"Launch Helper app");
     [self invokeLaunchctlWithCommand:@"load" argument:self.launchdPlistPath];
+    // Register helper UTI scheme with Launch Services
+    NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
+    TSLog (@"Helper App Path: %@", [url path]);
+    if (url) {
+        LSRegisterURL((__bridge CFURLRef)url, true);
+        OSStatus stat;
+        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)@"com.timschroeder.brow-helper", kLSRolesAll, (__bridge CFStringRef)@"com.timschroeder.brow-helper");
+
+        TSLog (@"Registered UTI Scheme with Launch Services");
+    } else {
+        TSLog (@"Could not register UTI Scheme with Launch Services");
+    }
 }
 
 -(void)stopHelper
-{    
+{
     // Terminate helper app, if running
     NSArray *running = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.helperBundleIdentifier];
     if ([running count] > 0) {
@@ -192,7 +211,7 @@
     // First time, install spotlight importer and launch helper
     if (alreadyInstalled == nil) {
         TSLog (@"First Time Launch, installing helper and spotlight importer..");
-        [self installImporter]; // install spotlight importer
+        //[self installImporter]; // install spotlight importer DEBUG - DISABLED
         [prefs setValue:@YES forKey:key]; // write to defaults that not first time install
         [prefs synchronize];
         [self startHelper]; // start helper

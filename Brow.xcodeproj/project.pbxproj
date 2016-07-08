@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2200D6AC1D304EDF00F5186B /* Brow.app in Resources */ = {isa = PBXBuildFile; fileRef = 220383511D20286E00087E41 /* Brow.app */; };
 		220382D81D1F24AC00087E41 /* brow.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 220382D71D1F24AC00087E41 /* brow.iconset */; };
 		220383181D200DCB00087E41 /* Brow.h in Headers */ = {isa = PBXBuildFile; fileRef = 220383161D200DCB00087E41 /* Brow.h */; };
 		220383191D200DCB00087E41 /* Brow.m in Sources */ = {isa = PBXBuildFile; fileRef = 220383171D200DCB00087E41 /* Brow.m */; };
@@ -14,7 +15,6 @@
 		220383581D20286E00087E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 220383571D20286E00087E41 /* main.m */; };
 		2203835A1D20286E00087E41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 220383591D20286E00087E41 /* Assets.xcassets */; };
 		2203835D1D20286E00087E41 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2203835B1D20286E00087E41 /* MainMenu.xib */; };
-		220383691D204FF400087E41 /* brow-helper.app in Resources */ = {isa = PBXBuildFile; fileRef = 220383511D20286E00087E41 /* brow-helper.app */; };
 		2203836B1D2055FB00087E41 /* com.timschroeder.brow-helper.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2203836A1D2055FB00087E41 /* com.timschroeder.brow-helper.plist */; };
 		2203836D1D2066EC00087E41 /* brow-helper.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 2203836C1D2066EC00087E41 /* brow-helper.iconset */; };
 		220AC2351D27F42A003C8079 /* TSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 220AC2341D27F42A003C8079 /* TSStream.m */; };
@@ -39,10 +39,6 @@
 		2240FEFC1D22FDE700888874 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240FEFB1D22FDE700888874 /* libsqlite3.tbd */; };
 		2240FF1E1D24221E00888874 /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240FF1D1D24221E00888874 /* TSLogger.m */; };
 		225143F21D2AF9CF005353F1 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225143F11D2AF9CF005353F1 /* ApplicationServices.framework */; };
-		22948D0C1D2967A400CF1FCC /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 22948D0B1D2967A400CF1FCC /* main.c */; };
-		22948D0E1D2967A400CF1FCC /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 22948D0D1D2967A400CF1FCC /* GetMetadataForFile.m */; };
-		22948D111D2967A400CF1FCC /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 22948D101D2967A400CF1FCC /* MySpotlightImporter.m */; };
-		22948D161D2967A400CF1FCC /* brow-importer.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = 22948D081D2967A400CF1FCC /* brow-importer.mdimporter */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +55,7 @@
 		220382D71D1F24AC00087E41 /* brow.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = brow.iconset; sourceTree = "<group>"; };
 		220383161D200DCB00087E41 /* Brow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brow.h; sourceTree = "<group>"; };
 		220383171D200DCB00087E41 /* Brow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brow.m; sourceTree = "<group>"; };
-		220383511D20286E00087E41 /* brow-helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brow-helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		220383511D20286E00087E41 /* Brow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		220383531D20286E00087E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		220383541D20286E00087E41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		220383571D20286E00087E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -107,13 +103,6 @@
 		2240FF1C1D24221E00888874 /* TSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSLogger.h; path = "brow-helper/TSLogger.h"; sourceTree = "<group>"; };
 		2240FF1D1D24221E00888874 /* TSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSLogger.m; path = "brow-helper/TSLogger.m"; sourceTree = "<group>"; };
 		225143F11D2AF9CF005353F1 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
-		22948D081D2967A400CF1FCC /* brow-importer.mdimporter */ = {isa = PBXFileReference; explicitFileType = "wrapper.spotlight-importer"; includeInIndex = 0; path = "brow-importer.mdimporter"; sourceTree = BUILT_PRODUCTS_DIR; };
-		22948D0B1D2967A400CF1FCC /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		22948D0D1D2967A400CF1FCC /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
-		22948D0F1D2967A400CF1FCC /* MySpotlightImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
-		22948D101D2967A400CF1FCC /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
-		22948D121D2967A400CF1FCC /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
-		22948D131D2967A400CF1FCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,13 +121,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				225143F21D2AF9CF005353F1 /* ApplicationServices.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22948D051D2967A400CF1FCC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +218,6 @@
 				220AC26F1D292F0F003C8079 /* Logging */,
 				2236A4891D1ED65500C102CE /* Brow */,
 				220383521D20286E00087E41 /* brow-helper */,
-				22948D091D2967A400CF1FCC /* brow-importer */,
 				221452EA1D21D0110065494E /* Frameworks */,
 				2236A4881D1ED65500C102CE /* Products */,
 			);
@@ -246,8 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				2236A4871D1ED65500C102CE /* Brow.prefPane */,
-				220383511D20286E00087E41 /* brow-helper.app */,
-				22948D081D2967A400CF1FCC /* brow-importer.mdimporter */,
+				220383511D20286E00087E41 /* Brow.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,27 +254,6 @@
 				221452E81D21CFD60065494E /* NSURL+Extensions.m */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		22948D091D2967A400CF1FCC /* brow-importer */ = {
-			isa = PBXGroup;
-			children = (
-				22948D0D1D2967A400CF1FCC /* GetMetadataForFile.m */,
-				22948D0F1D2967A400CF1FCC /* MySpotlightImporter.h */,
-				22948D101D2967A400CF1FCC /* MySpotlightImporter.m */,
-				22948D121D2967A400CF1FCC /* Importer Read Me.txt */,
-				22948D131D2967A400CF1FCC /* Info.plist */,
-				22948D0A1D2967A400CF1FCC /* Supporting Files */,
-			);
-			path = "brow-importer";
-			sourceTree = "<group>";
-		};
-		22948D0A1D2967A400CF1FCC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				22948D0B1D2967A400CF1FCC /* main.c */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,7 +284,7 @@
 			);
 			name = "brow-helper";
 			productName = "brow-helper";
-			productReference = 220383511D20286E00087E41 /* brow-helper.app */;
+			productReference = 220383511D20286E00087E41 /* Brow.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2236A4861D1ED65500C102CE /* Brow */ = {
@@ -347,23 +306,6 @@
 			productReference = 2236A4871D1ED65500C102CE /* Brow.prefPane */;
 			productType = "com.apple.product-type.bundle";
 		};
-		22948D071D2967A400CF1FCC /* brow-importer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 22948D171D2967A400CF1FCC /* Build configuration list for PBXNativeTarget "brow-importer" */;
-			buildPhases = (
-				22948D041D2967A400CF1FCC /* Sources */,
-				22948D051D2967A400CF1FCC /* Frameworks */,
-				22948D061D2967A400CF1FCC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "brow-importer";
-			productName = "brow-importer";
-			productReference = 22948D081D2967A400CF1FCC /* brow-importer.mdimporter */;
-			productType = "com.apple.product-type.spotlight-importer";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -377,9 +319,6 @@
 						CreatedOnToolsVersion = 7.3;
 					};
 					2236A4861D1ED65500C102CE = {
-						CreatedOnToolsVersion = 7.3;
-					};
-					22948D071D2967A400CF1FCC = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -399,7 +338,6 @@
 			targets = (
 				2236A4861D1ED65500C102CE /* Brow */,
 				220383501D20286E00087E41 /* brow-helper */,
-				22948D071D2967A400CF1FCC /* brow-importer */,
 			);
 		};
 /* End PBXProject section */
@@ -411,7 +349,6 @@
 			files = (
 				2203835A1D20286E00087E41 /* Assets.xcassets in Resources */,
 				2203835D1D20286E00087E41 /* MainMenu.xib in Resources */,
-				22948D161D2967A400CF1FCC /* brow-importer.mdimporter in Resources */,
 				2203836D1D2066EC00087E41 /* brow-helper.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,19 +357,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220383691D204FF400087E41 /* brow-helper.app in Resources */,
+				2200D6AC1D304EDF00F5186B /* Brow.app in Resources */,
 				2236A49C1D1ED6F100C102CE /* brow-icon.png in Resources */,
 				2236A49B1D1ED6F100C102CE /* brow-icon@2x.png in Resources */,
 				2203836B1D2055FB00087E41 /* com.timschroeder.brow-helper.plist in Resources */,
 				220382D81D1F24AC00087E41 /* brow.iconset in Resources */,
 				2236A4921D1ED65500C102CE /* Brow.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22948D061D2967A400CF1FCC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,16 +398,6 @@
 			files = (
 				220AC2701D292F5A003C8079 /* TSLogger.m in Sources */,
 				220383191D200DCB00087E41 /* Brow.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22948D041D2967A400CF1FCC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				22948D111D2967A400CF1FCC /* MySpotlightImporter.m in Sources */,
-				22948D0C1D2967A400CF1FCC /* main.c in Sources */,
-				22948D0E1D2967A400CF1FCC /* GetMetadataForFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +440,7 @@
 				INFOPLIST_FILE = "brow-helper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-helper";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Brow;
 			};
 			name = Debug;
 		};
@@ -533,7 +453,7 @@
 				INFOPLIST_FILE = "brow-helper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-helper";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Brow;
 			};
 			name = Release;
 		};
@@ -651,38 +571,6 @@
 			};
 			name = Release;
 		};
-		22948D181D2967A400CF1FCC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "brow-importer/Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-importer";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
-			};
-			name = Debug;
-		};
-		22948D191D2967A400CF1FCC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "brow-importer/Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-importer";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -709,15 +597,6 @@
 			buildConfigurations = (
 				2236A4971D1ED65500C102CE /* Debug */,
 				2236A4981D1ED65500C102CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		22948D171D2967A400CF1FCC /* Build configuration list for PBXNativeTarget "brow-importer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				22948D181D2967A400CF1FCC /* Debug */,
-				22948D191D2967A400CF1FCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

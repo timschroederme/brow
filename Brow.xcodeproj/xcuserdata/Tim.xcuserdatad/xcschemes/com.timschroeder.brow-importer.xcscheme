@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "220383501D20286E00087E41"
-               BuildableName = "Brow.app"
-               BlueprintName = "brow-helper"
+               BlueprintIdentifier = "22948CF11D29678D00CF1FCC"
+               BuildableName = "com.timschroeder.brow-importer.mdimporter"
+               BlueprintName = "com.timschroeder.brow-importer"
                ReferencedContainer = "container:Brow.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "220383501D20286E00087E41"
-            BuildableName = "Brow.app"
-            BlueprintName = "brow-helper"
-            ReferencedContainer = "container:Brow.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "220383501D20286E00087E41"
-            BuildableName = "Brow.app"
-            BlueprintName = "brow-helper"
+            BlueprintIdentifier = "22948CF11D29678D00CF1FCC"
+            BuildableName = "com.timschroeder.brow-importer.mdimporter"
+            BlueprintName = "com.timschroeder.brow-importer"
             ReferencedContainer = "container:Brow.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "220383501D20286E00087E41"
-            BuildableName = "Brow.app"
-            BlueprintName = "brow-helper"
+            BlueprintIdentifier = "22948CF11D29678D00CF1FCC"
+            BuildableName = "com.timschroeder.brow-importer.mdimporter"
+            BlueprintName = "com.timschroeder.brow-importer"
             ReferencedContainer = "container:Brow.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
