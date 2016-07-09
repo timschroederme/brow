@@ -58,7 +58,6 @@ BOOL _debugging = NO;
             [prefs synchronize];
         }
     }
-    _debugging = YES;
 }
 
 -(BOOL)isLoggingEnabled
