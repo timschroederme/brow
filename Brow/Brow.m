@@ -51,58 +51,6 @@
 
 }
 
-#pragma mark -
-#pragma mark brow-importer Helper Methods
-
-- (void)copyFolderAtPath:(NSString *)sourceFolder toDestinationFolderAtPath:(NSString*)destinationFolder {
-    destinationFolder = [destinationFolder stringByAppendingPathComponent:[sourceFolder lastPathComponent]];
-    
-    NSFileManager * fileManager = [ NSFileManager defaultManager];
-    NSError * error = nil;
-    
-    // Create destination folder if it doesn't exist
-    NSError *createError;
-    BOOL isDir;
-    if (![fileManager fileExistsAtPath:destinationFolder isDirectory:&isDir])
-    {
-        if (![fileManager createDirectoryAtPath:destinationFolder
-                    withIntermediateDirectories:YES
-                                     attributes:nil
-                                          error:&createError])
-        {
-            TSLog (@"Error creating Spotlight directory: %@", [createError description]);
-        }
-    }
-    
-    if ([ fileManager fileExistsAtPath:destinationFolder])  //check if destinationFolder exists
-    {
-        //removing destination, so source may be copied
-        if (![fileManager removeItemAtPath:destinationFolder error:&error])
-        {
-            TSLog(@"Could not remove old files. Error:%@",error);
-        }
-    }
-    
-    error = nil;
-    
-    //copying to destination
-    if ( !( [ fileManager copyItemAtPath:sourceFolder toPath:destinationFolder error:&error ]) )
-    {
-        TSLog(@"Could not copy from path %@ to path %@. error %@",sourceFolder, destinationFolder, [error description]);
-    }
-}
-
--(void)installImporter
-{
-    TSLog (@"Installing Spotlight importer..");
-    NSString* importerBundlePath = [NSString stringWithFormat:@"%@/Contents/Resources/brow-importer.mdimporter/", [[self bundle] bundlePath]];
-    NSString *spotlightPath = [NSString stringWithFormat:@"%@/Library/Spotlight", NSHomeDirectory()];
-    TSLog (@"ImporterBundlePath: %@", importerBundlePath);
-    TSLog (@"spotlightPath: %@", spotlightPath);
-    [self copyFolderAtPath:importerBundlePath toDestinationFolderAtPath:spotlightPath];
-    TSLog (@"Activating Spotlight importer..");
-    // TODO: /usr/bin/mdimport -r ~/Library/Spotlight/..
-}
 
 #pragma mark -
 #pragma mark brow-helper Control Methods
@@ -145,6 +93,20 @@
     return ([NSDictionary dictionaryWithDictionary:mutablePlist]);
 }
 
+-(void)registerHelperUTIScheme
+{
+    NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
+    if (url) {
+        LSRegisterURL((__bridge CFURLRef)url, true);
+        OSStatus stat;
+        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)[self helperBundleIdentifier], kLSRolesAll, (__bridge CFStringRef)[self helperBundleIdentifier]);
+        TSLog (@"Registered UTI Scheme with Launch Services");
+    } else {
+        TSLog (@"Could not register UTI Scheme with Launch Services");
+    }
+
+}
+
 -(void)startHelper
 {
     // Remove plist file
@@ -159,33 +121,24 @@
     TSLog (@"Launch Helper app");
     [self invokeLaunchctlWithCommand:@"load" argument:self.launchdPlistPath];
     // Register helper UTI scheme with Launch Services
-    NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
-    TSLog (@"Helper App Path: %@", [url path]);
-    if (url) {
-        LSRegisterURL((__bridge CFURLRef)url, true);
-        OSStatus stat;
-        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)@"com.timschroeder.brow-helper", kLSRolesAll, (__bridge CFStringRef)@"com.timschroeder.brow-helper");
-
-        TSLog (@"Registered UTI Scheme with Launch Services");
-    } else {
-        TSLog (@"Could not register UTI Scheme with Launch Services");
-    }
+    [self registerHelperUTIScheme];
 }
 
 -(void)stopHelper
 {
     // Terminate helper app, if running
+    TSLog (@"Should Terminate Brow-Helper");
     NSArray *running = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.helperBundleIdentifier];
     if ([running count] > 0) {
         NSRunningApplication *r = [running firstObject];
+        TSLog (@"Terminating Brow-Helper");
         [r terminate];
     }
     
     // Unload brow-helper agent from launchd
+    TSLog (@"Removing Brow-Helper from Autostart");
     [self invokeLaunchctlWithCommand:@"unload"
                             argument:self.launchdPlistPath];
-    
-    // Remove plist file
     [self removelaunchdPlistFile];
 }
 
@@ -200,7 +153,6 @@
 #pragma mark -
 #pragma mark Main Event Handling Methods
 
-// TODO: Update-Mechanismus mit Versionserkennung für Helper install und importer install ergänzen
 - (void)mainViewDidLoad
 {
     // Check if pref pane is opened the first time
@@ -211,13 +163,11 @@
     // First time, install spotlight importer and launch helper
     if (alreadyInstalled == nil) {
         TSLog (@"First Time Launch, installing helper and spotlight importer..");
-        //[self installImporter]; // install spotlight importer DEBUG - DISABLED
         [prefs setValue:@YES forKey:key]; // write to defaults that not first time install
         [prefs synchronize];
         [self startHelper]; // start helper
         [self setSyncButtonToOn];
     } else {
-
         // Init toggleSyncButton
         if ([self isHelperRunning]) {
             [self setSyncButtonToOn];
