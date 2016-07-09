@@ -98,16 +98,15 @@ static TSFirefoxConnector *_sharedConnector = nil;
     
     //Vorbereitung des Bookmark-Pfades abschließen
     path = [path stringByAppendingFormat:@"/%@", profileName];
-    if (withFileName) path = [path stringByAppendingFormat:@"/%@", [self bookmarkFile]];
+    if (withFileName) path = [path stringByAppendingFormat:@"/places.sqlite"];
     
     return (path);
 }
 
--(NSString*)bookmarkFile
+-(NSArray*)bookmarkFiles
 {
-    NSString *filename;
-    filename = @"places.sqlite";
-    return filename;
+    NSArray *files = [NSArray arrayWithObjects:@"places.sqlite", @"places.sqlite-wal", nil];
+    return files;
 }
 
 #pragma mark -

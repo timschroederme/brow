@@ -19,7 +19,7 @@
 
 -(NSURL*)bookmarkPath;
 -(NSString*)fullBookmarkPathWithFileName:(BOOL)withFileName;
--(NSString*)bookmarkFile;
+-(NSArray*)bookmarkFiles;
 
 -(NSSet*)getBookmarks;
 

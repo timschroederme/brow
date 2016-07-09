@@ -132,22 +132,26 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         firefoxDir = [firefoxDir stringByAppendingString:@"/"];
         if ([path isEqualToString:firefoxDir]) {
             TSLog (@"fsevents_callback for Firefox: %@", path);
-            path = [path stringByAppendingPathComponent:[[TSFirefoxConnector sharedConnector] bookmarkFile]];
-            NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path
-                                                                                error:nil] fileModificationDate];
-            if (firefoxLastChangeDate) {
-                if (![modDate isEqualToDate:firefoxLastChangeDate]) {
-                    // Re-Index Bookmarks
-                    TSLog (@"Firefox bookmarks changed, re-synchronizing ..");
+            NSArray *firefoxChangePaths = [[TSFirefoxConnector sharedConnector] bookmarkFiles];
+            for (NSString *findPath in firefoxChangePaths)
+            {
+                NSString *checkPath = [path stringByAppendingPathComponent:findPath];
+                NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:checkPath
+                                                                                    error:nil] fileModificationDate];
+                if (firefoxLastChangeDate) {
+                    if (![modDate isEqualToDate:firefoxLastChangeDate]) {
+                        // Re-Index Bookmarks
+                        TSLog (@"Firefox bookmarks changed, re-synchronizing ..");
+                        [[TSSyncController sharedController] syncFirefoxBookmarks];
+                        firefoxLastChangeDate = modDate;
+                    }
+                } else {
+                    // Index Bookmarks for the first time
+                    TSLog (@"Firefox bookmarks changed, synchronizing for the first time ..");
+                    
                     [[TSSyncController sharedController] syncFirefoxBookmarks];
                     firefoxLastChangeDate = modDate;
                 }
-            } else {
-                // Index Bookmarks for the first time
-                TSLog (@"Firefox bookmarks changed, synchronizing for the first time ..");
-
-                [[TSSyncController sharedController] syncFirefoxBookmarks];
-                firefoxLastChangeDate = modDate;
             }
         }
     }
