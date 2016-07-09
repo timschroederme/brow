@@ -93,17 +93,18 @@ static TSSyncController *_sharedController = nil;
 
 -(void)deleteBookmarksAtPath:(NSString*)path
 {
-    // Output-Pfad vorbereiten
-    //NSString *urlString = [bookmarkURL path];
-    //urlString = [urlString stringByExpandingTildeInPath];
-    //urlString = [urlString stringByAppendingString:path];
-    
-    BOOL fileExists;
-    //fileExists = [[NSFileManager defaultManager] fileExistsAtPath:urlString];
-    if (fileExists) {
-        NSError *error2;
-        //[[NSFileManager defaultManager] removeItemAtPath:urlString error:&error2];
-        if (error2) TSLog (@"Error while deleting old bookmarks: %@", error2);
+    TSLog (@"Delete Bookmarks at path %@", path);
+    NSError *error;
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&error];
+    if (error) {
+        TSLog (@"Error while enumerating files for deletion");
+        return;
+    }
+    for(NSString *file in files) {
+        [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:file] error:&error];
+        if(error) {
+            TSLog (@"Error while deleting file %@", file);
+        }
     }
 }
 
@@ -122,16 +123,6 @@ static TSSyncController *_sharedController = nil;
 
 -(NSString*)firefoxOutputPath
 {
-    /*
-    NSError *error;
-    NSString *path = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                                      inDomain:NSUserDomainMask
-                                                             appropriateForURL:nil
-                                                                        create:YES
-                                                                         error:&error] path];
-    path = [path stringByAppendingPathComponent:FIREFOX_OUTPUT_PATH];
-     */
-    //NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSLocalDomainMask, YES) lastObject];
     NSString *path = [NSHomeDirectory() stringByAppendingString:FIREFOX_OUTPUT_PATH];
     TSLog (@"firefoxOutputPath: %@", path);
     return (path);
@@ -139,15 +130,6 @@ static TSSyncController *_sharedController = nil;
 
 -(NSString*)chromeOutputPath
 {
-    /*
-    NSError *error;
-    NSString *path = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                             inDomain:NSUserDomainMask
-                                                    appropriateForURL:nil
-                                                               create:YES
-                                                                error:&error] path];
-    path = [path stringByAppendingPathComponent:CHROME_OUTPUT_PATH];
-    */
     NSString *path = [NSHomeDirectory() stringByAppendingString:CHROME_OUTPUT_PATH];
     TSLog (@"chromeOutputPath: %@", path);
     return (path);
@@ -190,7 +172,7 @@ static TSSyncController *_sharedController = nil;
               atomically:NO];
     TSLog (@"Writing bookmark to path %@", path);
     
-    // Extension verstecken
+    // Hide extension
     NSDictionary* attributes = [NSDictionary dictionaryWithObject:
                                 [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden];
     [[NSFileManager defaultManager] setAttributes:attributes
@@ -210,11 +192,11 @@ static TSSyncController *_sharedController = nil;
     NSSet *bookmarks = [[TSFirefoxConnector sharedConnector] getBookmarks];
     if (bookmarks) {
         
-        // Output-Pfad vorbereiten
+        // Prepare output path
         NSString *outputURLPath = [self firefoxOutputPath];
         dispatch_async(dispatch_queue_create("TSSyncQueue", NULL), ^(void) {
             
-            // Bookmark-Dateien erzeugen
+            // Create bookmark files
             NSInteger counter = 0;
             for (TSBookmark *bookmark in bookmarks) {
                 counter++;
@@ -239,11 +221,11 @@ static TSSyncController *_sharedController = nil;
     NSSet *bookmarks = [[TSChromeConnector sharedConnector] getBookmarks];
     if (bookmarks) {
         
-        // Output-Pfad vorbereiten
+        // Prepare output path
         NSString *outputURLPath = [self chromeOutputPath];
         dispatch_async(dispatch_queue_create("TSSyncQueue", NULL), ^(void) {
             
-            // Bookmark-Dateien erzeugen
+            // Create bookmark files
             NSInteger counter = 0;
             for (TSBookmark *bookmark in bookmarks) {
                 counter++;
