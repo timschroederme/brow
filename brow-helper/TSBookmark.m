@@ -27,14 +27,5 @@
     return (![self isFolder]);
 }
 
-/*
- -(NSImage*)icon
- {
- if ([self browser] == Safari) return ([NSImage imageNamed:@"folder-safari.png"]);
- if ([self browser] == Chrome) return ([NSImage imageNamed:@"folder-chrome.png"]);
- if ([self browser] == Firefox) return ([NSImage imageNamed:@"folder-firefox.png"]);
- return nil;
- }
- */
 
 @end
