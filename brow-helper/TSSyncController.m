@@ -137,8 +137,9 @@ static TSSyncController *_sharedController = nil;
 
 -(void)createBookmarkFileForBookmark:(TSBookmark*)bookmark
                               atPath:(NSString*)path
+                          forBrowser:(NSString*)browser
 {
-    // Ggf. Output-Verzeichnis erzeugen
+    // Create output directory if necessary
     BOOL fileExists;
     fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (!fileExists) {
@@ -150,10 +151,13 @@ static TSSyncController *_sharedController = nil;
         if (error) TSLog (@"Error while trying to create Dir: %@", error);
     }
     
+    // Create bookmark data
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
     [dict setValue:[bookmark title] forKey:@"Name"];
     [dict setValue:[[bookmark URL] absoluteString] forKey:@"URL"];
+    [dict setValue:browser forKey:@"Browser"];
     
+    // Write data to file
     NSData *xmlData;
     NSError *error;
     xmlData = [NSPropertyListSerialization dataWithPropertyList:dict
@@ -165,14 +169,13 @@ static TSSyncController *_sharedController = nil;
         return;
     }
     NSString *title = [self stringByMakingFileNameValid:[bookmark title]];
-    //NSString *extension = @"webbookmark";
     NSString *extension = @"brow";
     path = [path stringByAppendingFormat:@"/%@.%@", title, extension];
     [xmlData writeToFile:path
               atomically:NO];
     TSLog (@"Writing bookmark to path %@", path);
     
-    // Hide extension
+    // Hide file extension
     NSDictionary* attributes = [NSDictionary dictionaryWithObject:
                                 [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden];
     [[NSFileManager defaultManager] setAttributes:attributes
@@ -201,7 +204,8 @@ static TSSyncController *_sharedController = nil;
             for (TSBookmark *bookmark in bookmarks) {
                 counter++;
                 [self createBookmarkFileForBookmark:bookmark
-                                             atPath:outputURLPath];
+                                             atPath:outputURLPath
+                                         forBrowser:@"Firefox"];
             }
             TSLog (@"Synced %li Firefox bookmarks.", (long)counter);
         });
@@ -230,7 +234,8 @@ static TSSyncController *_sharedController = nil;
             for (TSBookmark *bookmark in bookmarks) {
                 counter++;
                 [self createBookmarkFileForBookmark:bookmark
-                                             atPath:outputURLPath];
+                                             atPath:outputURLPath
+                                         forBrowser:@"Chrome"];
             }
             TSLog (@"Synced %li Chrome bookmarks.", (long)counter);
         });
