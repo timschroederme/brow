@@ -63,6 +63,70 @@ static TSMonitorController *_sharedController = nil;
 #pragma mark -
 #pragma mark Monitoring Callback Handling
 
+// Test if Chrome bookmark files have been modified
+BOOL checkForChromeChangesAtPath(NSString *path)
+{
+    BOOL chromeChanged = NO;
+    
+    NSArray *chromeDirs = [[TSChromeConnector sharedConnector] bookmarkFileDirectories];
+    BOOL foundChromeDir = NO;
+    
+    // Iterate over all profiles
+    for (id chromeDir in chromeDirs)
+    {
+        NSString *dir = [chromeDir stringByAppendingString:@"/"];
+        if ([path isEqualToString:dir])
+        {
+            foundChromeDir = YES;
+        }
+    }
+    if (foundChromeDir) {
+        TSLog (@"fsevents_callback for Chrome: %@", path);
+        path = [path stringByAppendingPathComponent:[[TSChromeConnector sharedConnector] bookmarkFile]];
+        NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path
+                                                                            error:nil] fileModificationDate];
+        if (chromeLastChangeDate) {
+            if (![modDate isEqualToDate:chromeLastChangeDate]) {
+                chromeLastChangeDate = modDate;
+                chromeChanged = YES;
+            }
+        } else {
+            chromeLastChangeDate = modDate;
+            chromeChanged = YES;
+        }
+    }
+    return chromeChanged;
+}
+
+// Test if Chrome bookmark files have been modified
+BOOL checkForFirefoxChangesAtPath(NSString *path)
+{
+    BOOL firefoxChanged = NO;
+    
+    NSString *firefoxDir = [[TSFirefoxConnector sharedConnector] fullBookmarkPathWithFileName:NO];
+    firefoxDir = [firefoxDir stringByAppendingString:@"/"];
+    if ([path isEqualToString:firefoxDir]) {
+        TSLog (@"fsevents_callback for Firefox: %@", path);
+        NSArray *firefoxChangePaths = [[TSFirefoxConnector sharedConnector] bookmarkFiles];
+        for (NSString *findPath in firefoxChangePaths)
+        {
+            NSString *checkPath = [path stringByAppendingPathComponent:findPath];
+            NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:checkPath
+                                                                                error:nil] fileModificationDate];
+            if (firefoxLastChangeDate) {
+                if (![modDate isEqualToDate:firefoxLastChangeDate]) {
+                    firefoxLastChangeDate = modDate;
+                    firefoxChanged = YES;
+                }
+            } else {
+                firefoxLastChangeDate = modDate;
+                firefoxChanged = YES;
+            }
+        }
+    }
+    return firefoxChanged;
+}
+
 void fsevents_callback(ConstFSEventStreamRef streamRef,
                        void *userData,
                        size_t numEvents,
@@ -90,70 +154,22 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         NSString *path = [paths objectAtIndex:i];
         TSLog (@"fsevents_callback for %@", path);
         
-        // Test for Chrome directory modified
-        NSArray *chromeDirs = [[TSChromeConnector sharedConnector] bookmarkFileDirectories];
-        BOOL foundChromeDir = NO;
-        for (id chromeDir in chromeDirs)
+        // Test if Chrome bookmark files have been modified
+        BOOL chromeChanged = checkForChromeChangesAtPath(path);
+        if (chromeChanged)  // Yes, sync chrome bookmarks
         {
-            NSString *dir = [chromeDir stringByAppendingString:@"/"];
-            if ([path isEqualToString:dir])
-            {
-                foundChromeDir = YES;
-            }
-        }
-        if (foundChromeDir) {
-            TSLog (@"fsevents_callback for Chrome: %@", path);
-            path = [path stringByAppendingPathComponent:[[TSChromeConnector sharedConnector] bookmarkFile]];
-            NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path
-                                                                                error:nil] fileModificationDate];
-            if (chromeLastChangeDate) {
-                if (![modDate isEqualToDate:chromeLastChangeDate]) {
-                    
-                    // Re-Index Bookmarks
-                    [[TSSyncController sharedController] syncChromeBookmarks];
-                    
-                    chromeLastChangeDate = modDate;
-                    TSLog (@"chrome bookmarks changed");
-                }
-            } else {
-                // Re-Index Bookmarks
-                [[TSSyncController sharedController] syncChromeBookmarks];
-                
-                chromeLastChangeDate = modDate;
-                TSLog (@"chrome bookmarks changed");
-            }
+            TSLog (@"Chrome bookmarks changed, syncing ..");
+            [[TSSyncController sharedController] syncChromeBookmarks];
         }
         
-        // Test for Firefox directory modified
-        NSString *firefoxDir = [[TSFirefoxConnector sharedConnector] fullBookmarkPathWithFileName:NO];
-        firefoxDir = [firefoxDir stringByAppendingString:@"/"];
-        if ([path isEqualToString:firefoxDir]) {
-            TSLog (@"fsevents_callback for Firefox: %@", path);
-            NSArray *firefoxChangePaths = [[TSFirefoxConnector sharedConnector] bookmarkFiles];
-            for (NSString *findPath in firefoxChangePaths)
-            {
-                NSString *checkPath = [path stringByAppendingPathComponent:findPath];
-                NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:checkPath
-                                                                                    error:nil] fileModificationDate];
-                if (firefoxLastChangeDate) {
-                    if (![modDate isEqualToDate:firefoxLastChangeDate]) {
-                        
-                        // Re-Index Bookmarks
-                        TSLog (@"Firefox bookmarks changed, re-synchronizing ..");
-                        [[TSSyncController sharedController] syncFirefoxBookmarks];
-                        firefoxLastChangeDate = modDate;
-                    }
-                } else {
-                    // Index Bookmarks for the first time
-                    TSLog (@"Firefox bookmarks changed, synchronizing for the first time ..");
-                    
-                    [[TSSyncController sharedController] syncFirefoxBookmarks];
-                    firefoxLastChangeDate = modDate;
-                }
-            }
+        // Test if Firefox bookmark files have been modified
+        BOOL firefoxChanged = checkForFirefoxChangesAtPath(path);
+        if (firefoxChanged)  // Yes, sync chrome bookmarks
+        {
+            TSLog (@"Firefox bookmarks changed, syncing ..");
+            [[TSSyncController sharedController] syncFirefoxBookmarks];
         }
     }
-    
 }
 
 
