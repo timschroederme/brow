@@ -15,3 +15,5 @@ typedef enum {
 
 #define FIREFOX_OUTPUT_PATH @"/Library/Caches/Metadata/Brow/Firefox"
 #define CHROME_OUTPUT_PATH @"/Library/Caches/Metadata/Brow/Chrome"
+
+#define BROW_HELPER_UTI @"com.timschroeder.brow-helper"

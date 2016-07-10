@@ -39,6 +39,9 @@
 		2240FEFC1D22FDE700888874 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240FEFB1D22FDE700888874 /* libsqlite3.tbd */; };
 		2240FF1E1D24221E00888874 /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2240FF1D1D24221E00888874 /* TSLogger.m */; };
 		225143F21D2AF9CF005353F1 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225143F11D2AF9CF005353F1 /* ApplicationServices.framework */; };
+		229E51981D32707F00A44763 /* TSLaunchDController.h in Headers */ = {isa = PBXBuildFile; fileRef = 229E51961D32707F00A44763 /* TSLaunchDController.h */; };
+		229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
+		229E519A1D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +73,7 @@
 		221452CE1D21C2CF0065494E /* TSMonitorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMonitorController.m; sourceTree = "<group>"; };
 		221452D01D21C71F0065494E /* TSBrowserConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBrowserConnector.h; sourceTree = "<group>"; };
 		221452D11D21C71F0065494E /* TSBrowserConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBrowserConnector.m; sourceTree = "<group>"; };
-		221452D31D21C7860065494E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		221452D31D21C7860065494E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = "brow-helper/Constants.h"; sourceTree = "<group>"; };
 		221452D61D21CD1E0065494E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		221452D81D21CD930065494E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		221452DA1D21CE430065494E /* TSBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBookmark.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 		2240FF1C1D24221E00888874 /* TSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSLogger.h; path = "brow-helper/TSLogger.h"; sourceTree = "<group>"; };
 		2240FF1D1D24221E00888874 /* TSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSLogger.m; path = "brow-helper/TSLogger.m"; sourceTree = "<group>"; };
 		225143F11D2AF9CF005353F1 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		229E51961D32707F00A44763 /* TSLaunchDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLaunchDController.h; sourceTree = "<group>"; };
+		229E51971D32707F00A44763 /* TSLaunchDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLaunchDController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +138,6 @@
 				220AC2531D2817DE003C8079 /* Models */,
 				2240FEFD1D23182B00888874 /* Extensions */,
 				221453021D21D1010065494E /* FMDB */,
-				221452D31D21C7860065494E /* Constants.h */,
 				221452E31D21CEE10065494E /* TSSyncController.h */,
 				221452E41D21CEE10065494E /* TSSyncController.m */,
 				221452D01D21C71F0065494E /* TSBrowserConnector.h */,
@@ -215,6 +219,8 @@
 		2236A47D1D1ED65500C102CE = {
 			isa = PBXGroup;
 			children = (
+				229E519B1D3280B900A44763 /* Constants */,
+				229E51951D32706B00A44763 /* LaunchD */,
 				220AC26F1D292F0F003C8079 /* Logging */,
 				2236A4891D1ED65500C102CE /* Brow */,
 				220383521D20286E00087E41 /* brow-helper */,
@@ -256,6 +262,23 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		229E51951D32706B00A44763 /* LaunchD */ = {
+			isa = PBXGroup;
+			children = (
+				229E51961D32707F00A44763 /* TSLaunchDController.h */,
+				229E51971D32707F00A44763 /* TSLaunchDController.m */,
+			);
+			name = LaunchD;
+			sourceTree = "<group>";
+		};
+		229E519B1D3280B900A44763 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				221452D31D21C7860065494E /* Constants.h */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -264,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				220383181D200DCB00087E41 /* Brow.h in Headers */,
+				229E51981D32707F00A44763 /* TSLaunchDController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +400,7 @@
 				221453101D21D1540065494E /* FMDatabasePool.m in Sources */,
 				221452E21D21CEB50065494E /* TSFirefoxConnector.m in Sources */,
 				221453111D21D1540065494E /* FMDatabaseQueue.m in Sources */,
+				229E519A1D32707F00A44763 /* TSLaunchDController.m in Sources */,
 				2214530E1D21D1540065494E /* FMDatabase.m in Sources */,
 				2240FF1E1D24221E00888874 /* TSLogger.m in Sources */,
 				2214530F1D21D1540065494E /* FMDatabaseAdditions.m in Sources */,
@@ -396,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */,
 				220AC2701D292F5A003C8079 /* TSLogger.m in Sources */,
 				220383191D200DCB00087E41 /* Brow.m in Sources */,
 			);

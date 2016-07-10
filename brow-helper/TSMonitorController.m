@@ -11,7 +11,9 @@
 #import "TSFirefoxConnector.h"
 #import "TSSyncController.h"
 #import "TSStream.h"
+#import "TSLaunchDController.h"
 #import <CoreServices/CoreServices.h>
+#import "Constants.h"
 #import "TSLogger.h"
 
 @implementation TSMonitorController
@@ -61,24 +63,6 @@ static TSMonitorController *_sharedController = nil;
 #pragma mark -
 #pragma mark Monitoring Callback Handling
 
-//
-// Internal Helper Methods
-
-//-(BOOL)prefPaneMissing // checks if prefPane has been deinstalled, if yes, remove brow-helper
-// See Where Preference Panes Live
-// in https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/PreferencePanes/Concepts/Anatomy.html#//apple_ref/doc/uid/20000705-CJBCABAB
-// /Network/Library/PreferencePanes
-// /Library/PreferencePanes
-// ~/Library/PreferencePanes
-// AND also remove brow-importer 
-
-// Terminate brow-helper
--(void)terminateHelper
-{
-    //[NSApp terminate:<#(nullable id)#>]
-}
-
-
 void fsevents_callback(ConstFSEventStreamRef streamRef,
                        void *userData,
                        size_t numEvents,
@@ -87,6 +71,18 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
                        const FSEventStreamEventId eventIds[])
 // TODO nur selektiv synchronisieren, wenn mehrere Profile beobachtet werden!
 {
+    // Check if the Brow Pref Pane is still around, otherwise terminate helper and remove it from launchd
+    NSURL *helperURL = [[NSBundle mainBundle] bundleURL];
+    TSLog (@"HelperURL Path Check %@", helperURL);
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[helperURL path]])
+    {
+        TSLog (@"HelperURL Path is empty, terminating helper and removing it from launchd");
+        [[TSLaunchDController sharedController] unLoadService:BROW_HELPER_UTI];
+        [NSApp terminate:nil];
+    }
+    
+    // Evaluate all event paths to check whether Chrome or Firefox directories have been modified
+    
     int i;
     NSArray *paths = (__bridge NSArray*)eventPaths;
     
@@ -94,7 +90,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         NSString *path = [paths objectAtIndex:i];
         TSLog (@"fsevents_callback for %@", path);
         
-        // Auf Chrome testen
+        // Test for Chrome directory modified
         NSArray *chromeDirs = [[TSChromeConnector sharedConnector] bookmarkFileDirectories];
         BOOL foundChromeDir = NO;
         for (id chromeDir in chromeDirs)
@@ -112,6 +108,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
                                                                                 error:nil] fileModificationDate];
             if (chromeLastChangeDate) {
                 if (![modDate isEqualToDate:chromeLastChangeDate]) {
+                    
                     // Re-Index Bookmarks
                     [[TSSyncController sharedController] syncChromeBookmarks];
                     
@@ -127,7 +124,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
             }
         }
         
-        // Auf Firefox testen
+        // Test for Firefox directory modified
         NSString *firefoxDir = [[TSFirefoxConnector sharedConnector] fullBookmarkPathWithFileName:NO];
         firefoxDir = [firefoxDir stringByAppendingString:@"/"];
         if ([path isEqualToString:firefoxDir]) {
@@ -140,6 +137,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
                                                                                     error:nil] fileModificationDate];
                 if (firefoxLastChangeDate) {
                     if (![modDate isEqualToDate:firefoxLastChangeDate]) {
+                        
                         // Re-Index Bookmarks
                         TSLog (@"Firefox bookmarks changed, re-synchronizing ..");
                         [[TSSyncController sharedController] syncFirefoxBookmarks];

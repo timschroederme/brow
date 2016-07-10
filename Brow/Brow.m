@@ -8,6 +8,8 @@
 
 #import "Brow.h"
 #import "TSLogger.h"
+#import "TSLaunchDController.h"
+#import "Constants.h"
 #import <Foundation/Foundation.h>
 #import <ApplicationServices/ApplicationServices.h>
 
@@ -16,49 +18,12 @@
 @synthesize toggleSyncButton;
 
 #pragma mark -
-#pragma mark System Helper Methods
-
--(NSString*)helperBundleIdentifier
-{
-    return @"com.timschroeder.brow-helper";
-}
-
--(NSString*)launchdPlistPath
-{
-    return [NSString stringWithFormat:@"%@%@%@.plist",
-            NSHomeDirectory(),
-            @"/Library/LaunchAgents/",
-            [self helperBundleIdentifier]];
-}
-
--(void)invokeLaunchctlWithCommand:(NSString*)cmd argument:(NSString*)arg
-{
-    NSString *launchctlPath = @"/bin/launchctl";
-
-    NSTask *task = [NSTask launchedTaskWithLaunchPath:launchctlPath
-                                            arguments:[NSArray arrayWithObjects:cmd,
-                                                       arg,
-                                                       nil]];
-    [task waitUntilExit];
-
-}
-
--(void)removelaunchdPlistFile
-{
-    if ([[NSFileManager defaultManager] isDeletableFileAtPath:self.launchdPlistPath]) {
-        [[NSFileManager defaultManager] removeItemAtPath:self.launchdPlistPath error:nil];
-    }
-
-}
-
-
-#pragma mark -
 #pragma mark brow-helper Control Methods
 
 -(BOOL)isHelperRunning
 {
     BOOL result = NO;
-    NSArray *running = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.helperBundleIdentifier];
+    NSArray *running = [NSRunningApplication runningApplicationsWithBundleIdentifier:BROW_HELPER_UTI];
     if ([running count] > 0) {
         result = YES;;
     }
@@ -77,7 +42,7 @@
     NSString *key = @"ProgramArguments";
     
     // load plist file from resource bundle
-    NSURL *source = [[NSBundle bundleForClass:[self class]] URLForResource:self.helperBundleIdentifier
+    NSURL *source = [[NSBundle bundleForClass:[self class]] URLForResource:BROW_HELPER_UTI
                                                              withExtension:@"plist"];
     NSMutableDictionary *mutablePlist = [NSMutableDictionary dictionaryWithContentsOfURL:source];
     
@@ -99,7 +64,7 @@
     if (url) {
         LSRegisterURL((__bridge CFURLRef)url, true);
         OSStatus stat;
-        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)[self helperBundleIdentifier], kLSRolesAll, (__bridge CFStringRef)[self helperBundleIdentifier]);
+        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)BROW_HELPER_UTI, kLSRolesAll, (__bridge CFStringRef)BROW_HELPER_UTI);
         TSLog (@"Registered UTI Scheme with Launch Services");
     } else {
         TSLog (@"Could not register UTI Scheme with Launch Services");
@@ -109,17 +74,12 @@
 
 -(void)startHelper
 {
-    // Remove plist file
-    TSLog (@"Remove launchd plist file");
-    [self removelaunchdPlistFile];
+    TSLog (@"Brow: startHelper");
     
-    // Copy plist file
-    TSLog (@"Write new launchd plist file");
-    [[self helperPlist] writeToURL:[NSURL fileURLWithPath:self.launchdPlistPath] atomically:YES];
-        
     // Load brow-helper agent in launchd (will start automatically)
-    TSLog (@"Launch Helper app");
-    [self invokeLaunchctlWithCommand:@"load" argument:self.launchdPlistPath];
+    [[TSLaunchDController sharedController] loadService:BROW_HELPER_UTI
+                                              withPList:[self helperPlist]];
+    
     // Register helper UTI scheme with Launch Services
     [self registerHelperUTIScheme];
 }
@@ -127,19 +87,16 @@
 -(void)stopHelper
 {
     // Terminate helper app, if running
-    TSLog (@"Should Terminate Brow-Helper");
-    NSArray *running = [NSRunningApplication runningApplicationsWithBundleIdentifier:self.helperBundleIdentifier];
+    TSLog (@"Brow: stopHelper");
+    NSArray *running = [NSRunningApplication runningApplicationsWithBundleIdentifier:BROW_HELPER_UTI];
     if ([running count] > 0) {
         NSRunningApplication *r = [running firstObject];
-        TSLog (@"Terminating Brow-Helper");
+        TSLog (@"Brow-Helper is running, terminating");
         [r terminate];
     }
     
     // Unload brow-helper agent from launchd
-    TSLog (@"Removing Brow-Helper from Autostart");
-    [self invokeLaunchctlWithCommand:@"unload"
-                            argument:self.launchdPlistPath];
-    [self removelaunchdPlistFile];
+    [[TSLaunchDController sharedController] unLoadService:BROW_HELPER_UTI];
 }
 
 #pragma mark -
@@ -162,7 +119,7 @@
     
     // First time, install spotlight importer and launch helper
     if (alreadyInstalled == nil) {
-        TSLog (@"First Time Launch, installing helper and spotlight importer..");
+        TSLog (@"First Time Launch, installing helper ..");
         [prefs setValue:@YES forKey:key]; // write to defaults that not first time install
         [prefs synchronize];
         [self startHelper]; // start helper
