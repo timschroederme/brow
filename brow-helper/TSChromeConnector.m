@@ -49,9 +49,14 @@ static TSChromeConnector *_sharedConnector = nil;
 -(NSString*)appPath
 {
     NSString *path;
-    path = [[NSWorkspace sharedWorkspace] fullPathForApplication:@"Google Chrome"];
+    path = [[[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:[self identifier]] path];
     TSLog (@"Chrome installation path: %@", path)
     return path;
+}
+
+-(NSString*)identifier
+{
+    return (@"com.google.Chrome");
 }
 
 -(Browser)browserName

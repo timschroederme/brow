@@ -18,6 +18,7 @@
 + (TSChromeConnector *)sharedConnector;
 
 -(NSString*)appPath;
+-(NSString*)identifier;
 -(Browser)browserName;
 
 -(NSString*)bookmarkFile;

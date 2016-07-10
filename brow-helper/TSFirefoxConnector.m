@@ -46,9 +46,14 @@ static TSFirefoxConnector *_sharedConnector = nil;
 -(NSString*)appPath
 {
     NSString *path;
-    path = [[NSWorkspace sharedWorkspace] fullPathForApplication:@"Firefox"];
+    path = [[[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:[self identifier]] path];
     TSLog (@"Firefox installation path: %@", path)
     return path;
+}
+
+-(NSString*)identifier
+{
+    return (@"org.mozilla.firefox");
 }
 
 -(Browser)browserName

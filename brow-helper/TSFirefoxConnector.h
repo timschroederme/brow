@@ -15,6 +15,7 @@
 + (TSFirefoxConnector *)sharedConnector;
 
 -(NSString*)appPath;
+-(NSString*)identifier;
 -(Browser)browserName;
 
 -(NSURL*)bookmarkPath;
