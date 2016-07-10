@@ -10,6 +10,7 @@
 #import "TSMonitorController.h"
 #import "TSChromeConnector.h"
 #import "TSFirefoxConnector.h"
+#import "Constants.h"
 #import "TSLogger.h"
 
 
@@ -43,14 +44,14 @@
     // Collect all required data
     TSLog (@"brow-helper should open %@", filename);
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:filename];
-    NSString *url = [dict valueForKey:@"URL"];
-    NSString *app = [dict valueForKey:@"Browser"];
+    NSString *url = [dict valueForKey:BOOKMARK_KEY_URL];
+    NSString *app = [dict valueForKey:BOOKMARK_KEY_BROWSER];
     NSString *identifier;
-    if ([app isEqualToString:@"Firefox"])
+    if ([app isEqualToString:FIREFOX])
     {
         identifier = [[TSFirefoxConnector sharedConnector] identifier];
     }
-    if ([app isEqualToString:@"Chrome"])
+    if ([app isEqualToString:CHROME])
     {
         identifier = [[TSChromeConnector sharedConnector] identifier];
     }

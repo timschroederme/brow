@@ -153,9 +153,9 @@ static TSSyncController *_sharedController = nil;
     
     // Create bookmark data
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
-    [dict setValue:[bookmark title] forKey:@"Name"];
-    [dict setValue:[[bookmark URL] absoluteString] forKey:@"URL"];
-    [dict setValue:browser forKey:@"Browser"];
+    [dict setValue:[bookmark title] forKey:BOOKMARK_KEY_NAME];
+    [dict setValue:[[bookmark URL] absoluteString] forKey:BOOKMARK_KEY_URL];
+    [dict setValue:browser forKey:BOOKMARK_KEY_BROWSER];
     
     // Write data to file
     NSData *xmlData;
@@ -205,7 +205,7 @@ static TSSyncController *_sharedController = nil;
                 counter++;
                 [self createBookmarkFileForBookmark:bookmark
                                              atPath:outputURLPath
-                                         forBrowser:@"Firefox"];
+                                         forBrowser:FIREFOX];
             }
             TSLog (@"Synced %li Firefox bookmarks.", (long)counter);
         });
@@ -235,7 +235,7 @@ static TSSyncController *_sharedController = nil;
                 counter++;
                 [self createBookmarkFileForBookmark:bookmark
                                              atPath:outputURLPath
-                                         forBrowser:@"Chrome"];
+                                         forBrowser:CHROME];
             }
             TSLog (@"Synced %li Chrome bookmarks.", (long)counter);
         });

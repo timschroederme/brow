@@ -17,3 +17,10 @@ typedef enum {
 #define CHROME_OUTPUT_PATH @"/Library/Caches/Metadata/Brow/Chrome"
 
 #define BROW_HELPER_UTI @"com.timschroeder.brow-helper"
+
+#define BOOKMARK_KEY_NAME @"Name"
+#define BOOKMARK_KEY_URL @"URL"
+#define BOOKMARK_KEY_BROWSER @"Browser"
+
+#define FIREFOX @"Firefox"
+#define CHROME @"Chrome"
