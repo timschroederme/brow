@@ -98,7 +98,7 @@ BOOL checkForChromeChangesAtPath(NSString *path)
     return chromeChanged;
 }
 
-// Test if Chrome bookmark files have been modified
+// Test if Firefox bookmark files have been modified
 BOOL checkForFirefoxChangesAtPath(NSString *path)
 {
     BOOL firefoxChanged = NO;
@@ -127,6 +127,19 @@ BOOL checkForFirefoxChangesAtPath(NSString *path)
     return firefoxChanged;
 }
 
+// Checks if the Brow pref pane is still around
+BOOL prefPaneIsMissing()
+{
+    TSLog (@"checkIfPrefPaneIsMissing..");
+    BOOL isMissing = NO;
+    NSURL *helperURL = [[NSBundle mainBundle] bundleURL];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[helperURL path]])
+    {
+        isMissing = YES;
+    }
+    return isMissing;
+}
+
 void fsevents_callback(ConstFSEventStreamRef streamRef,
                        void *userData,
                        size_t numEvents,
@@ -136,17 +149,14 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 // TODO nur selektiv synchronisieren, wenn mehrere Profile beobachtet werden!
 {
     // Check if the Brow Pref Pane is still around, otherwise terminate helper and remove it from launchd
-    NSURL *helperURL = [[NSBundle mainBundle] bundleURL];
-    TSLog (@"HelperURL Path Check %@", helperURL);
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[helperURL path]])
+    if (prefPaneIsMissing())
     {
-        TSLog (@"HelperURL Path is empty, terminating helper and removing it from launchd");
+        TSLog (@"Pref Pane is missing, terminating helper and removing it from launchd");
         [[TSLaunchDController sharedController] unLoadService:BROW_HELPER_UTI];
         [NSApp terminate:nil];
     }
     
     // Evaluate all event paths to check whether Chrome or Firefox directories have been modified
-    
     int i;
     NSArray *paths = (__bridge NSArray*)eventPaths;
     
@@ -155,16 +165,14 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         TSLog (@"fsevents_callback for %@", path);
         
         // Test if Chrome bookmark files have been modified
-        BOOL chromeChanged = checkForChromeChangesAtPath(path);
-        if (chromeChanged)  // Yes, sync chrome bookmarks
+        if (checkForChromeChangesAtPath(path))  // Yes, sync Chrome bookmarks
         {
             TSLog (@"Chrome bookmarks changed, syncing ..");
             [[TSSyncController sharedController] syncChromeBookmarks];
         }
         
         // Test if Firefox bookmark files have been modified
-        BOOL firefoxChanged = checkForFirefoxChangesAtPath(path);
-        if (firefoxChanged)  // Yes, sync chrome bookmarks
+        if (checkForFirefoxChangesAtPath(path))  // Yes, sync Firefox bookmarks
         {
             TSLog (@"Firefox bookmarks changed, syncing ..");
             [[TSSyncController sharedController] syncFirefoxBookmarks];
