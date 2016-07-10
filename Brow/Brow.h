@@ -10,9 +10,15 @@
 #import <CoreFoundation/CoreFoundation.h>
 
 @interface Brow : NSPreferencePane
+{
+    IBOutlet NSWindow *aboutWindow;
+    IBOutlet NSTextView *aboutText;
+}
 
 -(IBAction)toggleSync:(id)sender;
+-(IBAction)about:(id)sender;
 
 @property (weak) IBOutlet NSSegmentedControl *toggleSyncButton;
+
 
 @end

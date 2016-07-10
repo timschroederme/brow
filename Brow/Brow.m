@@ -17,6 +17,7 @@
 
 @synthesize toggleSyncButton;
 
+
 #pragma mark -
 #pragma mark brow-helper Control Methods
 
@@ -110,6 +111,12 @@
 #pragma mark -
 #pragma mark Main Event Handling Methods
 
+- (void)awakeFromNib
+{
+    NSString *contentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"rtf"];
+    [aboutText readRTFDFromFile:contentPath];
+}
+
 - (void)mainViewDidLoad
 {
     // Check if pref pane is opened the first time
@@ -140,6 +147,12 @@
     } else {
         [self stopHelper];
     }
+}
+
+- (IBAction) about:(id)sender
+{
+    NSWindowController *aboutController = [[NSWindowController alloc] initWithWindow:aboutWindow];
+    [aboutController showWindow:self];
 }
 
 @end
