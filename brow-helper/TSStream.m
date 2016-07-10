@@ -10,6 +10,8 @@
 
 @implementation TSStream
 
+@synthesize path, lastChangeDate, fileName, isPathStream;
+
 FSEventStreamRef stream;
 
 -(void)setStream:(FSEventStreamRef)streamValue

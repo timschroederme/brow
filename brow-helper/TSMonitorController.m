@@ -19,8 +19,7 @@
 @implementation TSMonitorController
 
 NSMutableArray *chromeStreams;
-NSDate *chromeLastChangeDate;
-NSDate *firefoxLastChangeDate;
+NSMutableArray *firefoxStreams;
 
 static TSMonitorController *_sharedController = nil;
 
@@ -54,8 +53,6 @@ static TSMonitorController *_sharedController = nil;
     if (self = [super init]) {
         chromeMonitoringIsActive = NO;
         firefoxMonitoringIsActive = NO;
-        chromeLastChangeDate = nil;
-        firefoxLastChangeDate = nil;
     }
     return (self);
 }
@@ -72,26 +69,49 @@ BOOL checkForChromeChangesAtPath(NSString *path)
     BOOL foundChromeDir = NO;
     
     // Iterate over all profiles
+    NSString *foundChromeDirPath = nil;
     for (id chromeDir in chromeDirs)
     {
         NSString *dir = [chromeDir stringByAppendingString:@"/"];
         if ([path isEqualToString:dir])
         {
             foundChromeDir = YES;
+            foundChromeDirPath = chromeDir;
         }
     }
     if (foundChromeDir) {
         TSLog (@"fsevents_callback for Chrome: %@", path);
+        
+        // Find right TSStream instance for chromeDir path
+        TSStream *stream = nil;
+        for (id testStream in chromeStreams)
+        {
+            if ([[testStream path] isEqualToString:foundChromeDirPath])
+            {
+                stream = testStream;
+            }
+        }
+        if (!stream)
+        {
+            TSLog (@"Error in checkForChromeChangesAtPath: No stream found for path %@", path);
+            return NO;
+        }
+        
+        // Check last-modified date of file on disk
         path = [path stringByAppendingPathComponent:[[TSChromeConnector sharedConnector] bookmarkFile]];
         NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path
                                                                             error:nil] fileModificationDate];
-        if (chromeLastChangeDate) {
-            if (![modDate isEqualToDate:chromeLastChangeDate]) {
-                chromeLastChangeDate = modDate;
+        
+        // Compare the last-modified dates
+        if (stream.lastChangeDate) {
+            if (![modDate isEqualToDate:stream.lastChangeDate]) {
+                TSLog (@"checkForChromeChangesAtPath found change for file %@", stream.fileName);
+                stream.lastChangeDate = modDate;
                 chromeChanged = YES;
             }
         } else {
-            chromeLastChangeDate = modDate;
+            TSLog (@"checkForChromeChangesAtPath found change for file %@", stream.fileName);
+            stream.lastChangeDate = modDate;
             chromeChanged = YES;
         }
     }
@@ -104,22 +124,45 @@ BOOL checkForFirefoxChangesAtPath(NSString *path)
     BOOL firefoxChanged = NO;
     
     NSString *firefoxDir = [[TSFirefoxConnector sharedConnector] fullBookmarkPathWithFileName:NO];
-    firefoxDir = [firefoxDir stringByAppendingString:@"/"];
-    if ([path isEqualToString:firefoxDir]) {
+    if ([path isEqualToString:[firefoxDir stringByAppendingString:@"/"]]) {
         TSLog (@"fsevents_callback for Firefox: %@", path);
+        
         NSArray *firefoxChangePaths = [[TSFirefoxConnector sharedConnector] bookmarkFiles];
-        for (NSString *findPath in firefoxChangePaths)
+        for (NSString *file in firefoxChangePaths)
         {
-            NSString *checkPath = [path stringByAppendingPathComponent:findPath];
+            NSString *checkPath = [path stringByAppendingPathComponent:file];
+            
+            // Find right TSStream instance for firefoxDir path
+            TSStream *stream = nil;
+            for (TSStream* testStream in firefoxStreams)
+            {
+                TSLog (@"Checking if there is a Firefox stream for %@", file);
+                TSLog (@"Testing %@", [testStream fileName]);
+                if ([[testStream fileName] isEqualToString:file])
+                {
+                    stream = testStream;
+                }
+            }
+            if (!stream)
+            {
+                TSLog (@"Error in checkForFirefoxChangesAtPath: No stream found for path %@", path);
+                return NO;
+            }
+            
+            // Check last-modified date of file on disk
             NSDate *modDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:checkPath
                                                                                 error:nil] fileModificationDate];
-            if (firefoxLastChangeDate) {
-                if (![modDate isEqualToDate:firefoxLastChangeDate]) {
-                    firefoxLastChangeDate = modDate;
+            
+            // Compare the last-modified dates
+            if (stream.lastChangeDate) {
+                if (![modDate isEqualToDate:stream.lastChangeDate]) {
+                    TSLog (@"checkForFirefoxChangesAtPath found change for file %@", stream.fileName);
+                    stream.lastChangeDate = modDate;
                     firefoxChanged = YES;
                 }
             } else {
-                firefoxLastChangeDate = modDate;
+                TSLog (@"checkForFirefoxChangesAtPath found change for file %@", stream.fileName);
+                stream.lastChangeDate = modDate;
                 firefoxChanged = YES;
             }
         }
@@ -146,7 +189,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
                        void *eventPaths,
                        const FSEventStreamEventFlags eventFlags[],
                        const FSEventStreamEventId eventIds[])
-// TODO nur selektiv synchronisieren, wenn mehrere Profile beobachtet werden!
 {
     // Check if the Brow Pref Pane is still around, otherwise terminate helper and remove it from launchd
     if (prefPaneIsMissing())
@@ -168,6 +210,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         if (checkForChromeChangesAtPath(path))  // Yes, sync Chrome bookmarks
         {
             TSLog (@"Chrome bookmarks changed, syncing ..");
+            // TODO: sync .. durch syncAtPath ersetzen (selektives Sync)
             [[TSSyncController sharedController] syncChromeBookmarks];
         }
         
@@ -175,6 +218,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         if (checkForFirefoxChangesAtPath(path))  // Yes, sync Firefox bookmarks
         {
             TSLog (@"Firefox bookmarks changed, syncing ..");
+            // TODO: sync .. durch syncAtPath ersetzen (selektives Sync)
             [[TSSyncController sharedController] syncFirefoxBookmarks];
         }
     }
@@ -245,6 +289,9 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         chromeStream = [self startMonitoringForStream:chromeStream withPath:path];
         TSStream *streamObject = [[TSStream alloc] init];
         [streamObject setStream:chromeStream];
+        streamObject.path = path;
+        streamObject.lastChangeDate = nil;
+        streamObject.isPathStream = YES;
         [chromeStreams addObject:streamObject];
     }
     chromeMonitoringIsActive = YES;
@@ -263,6 +310,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 
 -(void)startFirefoxMonitoring
 // TODO Multi-Profile erfassen wie Chrome
+// nur der erste Stream ist isPathStream = YES
 {
     TSLog (@"startFirefoxMonitoring");
     
@@ -272,12 +320,38 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     // Return if we're already running
     if (firefoxMonitoringIsActive) return;
     
+    // Start Monitoring
+    if (firefoxStreams) {
+        [firefoxStreams removeAllObjects];
+    } else {
+        firefoxStreams = [NSMutableArray arrayWithCapacity:0];
+    }
+    
     // Retrieve path of bookmark file
     NSString *fullPath;
     fullPath = [[TSFirefoxConnector sharedConnector] fullBookmarkPathWithFileName:NO];
     
     // Start Monitoring
-    firefoxStream = [self startMonitoringForStream:firefoxStream withPath:fullPath];
+    NSArray *firefoxBookmarkFiles = [[TSFirefoxConnector sharedConnector] bookmarkFiles];
+    BOOL firstStream = YES;
+    for (id file in firefoxBookmarkFiles)
+    {
+        TSLog (@"Creating Firefox Stream for %@", file);
+        TSStream *streamObject = [[TSStream alloc] init];
+        streamObject.isPathStream = NO;
+        if (firstStream)
+        {
+            FSEventStreamRef firefoxStream;
+            streamObject.isPathStream = YES;
+            firstStream = NO;
+            firefoxStream = [self startMonitoringForStream:firefoxStream withPath:fullPath];
+            [streamObject setStream:firefoxStream];
+        }
+        streamObject.path = fullPath;
+        streamObject.fileName = file;
+        streamObject.lastChangeDate = nil;
+        [firefoxStreams addObject:streamObject];
+    }
     firefoxMonitoringIsActive = YES;
 }
 
@@ -285,7 +359,13 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 {
     TSLog (@"stopFirefoxMonitoring");
     if (!firefoxMonitoringIsActive) return;
-    [self stopMonitoringForStream:firefoxStream];
+    for (TSStream* stream in firefoxStreams)
+    {
+        if (stream.isPathStream)
+        {
+            [self stopMonitoringForStream:[stream getStream]];
+        }
+    }    
     firefoxMonitoringIsActive = NO;
 }
 

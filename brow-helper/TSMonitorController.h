@@ -10,7 +10,6 @@
 
 @interface TSMonitorController : NSObject
 {
-    FSEventStreamRef firefoxStream;
     BOOL chromeMonitoringIsActive;
     BOOL firefoxMonitoringIsActive;
     NSURL *chromeBookmarkURL;

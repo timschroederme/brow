@@ -12,5 +12,10 @@
 
 -(void)setStream:(FSEventStreamRef)stream;
 -(FSEventStreamRef)getStream;
+@property (retain) NSString *path;
+@property (retain) NSDate *lastChangeDate;
+@property (retain) NSString *fileName;
+@property (assign) BOOL isPathStream;
+
 
 @end
