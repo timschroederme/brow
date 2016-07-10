@@ -210,7 +210,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         if (checkForChromeChangesAtPath(path))  // Yes, sync Chrome bookmarks
         {
             TSLog (@"Chrome bookmarks changed, syncing ..");
-            // TODO: sync .. durch syncAtPath ersetzen (selektives Sync)
             [[TSSyncController sharedController] syncChromeBookmarks];
         }
         
@@ -218,7 +217,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         if (checkForFirefoxChangesAtPath(path))  // Yes, sync Firefox bookmarks
         {
             TSLog (@"Firefox bookmarks changed, syncing ..");
-            // TODO: sync .. durch syncAtPath ersetzen (selektives Sync)
             [[TSSyncController sharedController] syncFirefoxBookmarks];
         }
     }
@@ -264,9 +262,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 #pragma mark Public Methods
 
 -(void)startChromeMonitoring
-// TODO: Wenn neues Profil angelegt wird, während Monitoring läuft, muss neues Profil mit aufgenommen werden
-// TODO: Wenn bestehendes Profil gelöscht wird, während Monitoring läuft, muss Profil entfernt werden
-// TODO: Wahrscheinlich Extra-Monitoring
 {
     TSLog (@"startChromeMonitoring");
     
@@ -309,8 +304,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 }
 
 -(void)startFirefoxMonitoring
-// TODO Multi-Profile erfassen wie Chrome
-// nur der erste Stream ist isPathStream = YES
 {
     TSLog (@"startFirefoxMonitoring");
     

@@ -87,7 +87,6 @@ static TSFirefoxConnector *_sharedConnector = nil;
                                              error:&error];
     if (error) return nil;
     
-    // TODO Alle Profile auswerten
     NSRange range = [iniString rangeOfString:@"Name=default"];
     if (range.location == NSNotFound) return nil;
     
