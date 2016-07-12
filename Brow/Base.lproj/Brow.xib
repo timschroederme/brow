@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Brow">
@@ -24,27 +26,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="762" height="235"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DVc-cS-IrE">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DVc-cS-IrE">
                         <rect key="frame" x="20" y="45" width="190" height="190"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="190" id="4kr-6T-Lh6"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="brow-icon" id="ekH-Uo-TO1"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APU-d4-Y0o">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="APU-d4-Y0o">
                         <rect key="frame" x="358" y="190" width="130" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="126" id="iZk-cn-d4O"/>
+                            <constraint firstAttribute="height" constant="17" id="xBB-fS-n8q"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Welcome to Brow!" id="tru-H6-UMI">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zTG-FD-dSV">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zTG-FD-dSV">
                         <rect key="frame" x="358" y="123" width="262" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="258" id="0GV-vk-ELz"/>
+                        </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Brow adds your Chrome and Firefox bookmarks to Spotlight and auto-syncs all changes." id="LD9-pI-TUJ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tVH-XQ-oMe">
+                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tVH-XQ-oMe">
                         <rect key="frame" x="360" y="76" width="67" height="25"/>
                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="JkB-L1-61t">
                             <font key="font" metaFont="system"/>
@@ -57,16 +69,22 @@
                             <action selector="toggleSync:" target="-2" id="3wl-AB-chB"/>
                         </connections>
                     </segmentedControl>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQr-ag-Mqk">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sQr-ag-Mqk">
                         <rect key="frame" x="451" y="81" width="231" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="227" id="eTE-hP-oqw"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sync bookmarks" id="php-Pw-xR4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppu-gv-pWy">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ppu-gv-pWy">
                         <rect key="frame" x="665" y="18" width="77" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="77" id="Ck3-oe-BHV"/>
+                        </constraints>
                         <buttonCell key="cell" type="roundTextured" title="About" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fck-zh-5sX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -76,6 +94,23 @@
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="zTG-FD-dSV" firstAttribute="top" secondItem="APU-d4-Y0o" secondAttribute="bottom" constant="13" id="2Lg-y1-L9e"/>
+                    <constraint firstAttribute="trailing" secondItem="ppu-gv-pWy" secondAttribute="trailing" constant="20" id="74T-h7-jq0"/>
+                    <constraint firstItem="APU-d4-Y0o" firstAttribute="leading" secondItem="zTG-FD-dSV" secondAttribute="leading" id="CSa-If-mdu"/>
+                    <constraint firstAttribute="bottom" secondItem="tVH-XQ-oMe" secondAttribute="bottom" constant="78" id="JdZ-uA-Ign"/>
+                    <constraint firstAttribute="bottom" secondItem="ppu-gv-pWy" secondAttribute="bottom" constant="20" symbolic="YES" id="R3H-KN-sJQ"/>
+                    <constraint firstItem="sQr-ag-Mqk" firstAttribute="baseline" secondItem="tVH-XQ-oMe" secondAttribute="firstBaseline" id="U6a-79-Wji"/>
+                    <constraint firstItem="APU-d4-Y0o" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="28" id="WS5-7F-LNB"/>
+                    <constraint firstItem="DVc-cS-IrE" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="WhS-ia-tHJ"/>
+                    <constraint firstItem="tVH-XQ-oMe" firstAttribute="top" secondItem="zTG-FD-dSV" secondAttribute="bottom" constant="23" id="XOH-DK-966"/>
+                    <constraint firstItem="zTG-FD-dSV" firstAttribute="leading" secondItem="tVH-XQ-oMe" secondAttribute="leading" id="YfK-o6-Rdd"/>
+                    <constraint firstAttribute="trailing" secondItem="sQr-ag-Mqk" secondAttribute="trailing" constant="82" id="fIb-wL-AIE"/>
+                    <constraint firstItem="tVH-XQ-oMe" firstAttribute="baseline" secondItem="sQr-ag-Mqk" secondAttribute="baseline" id="ftp-bs-eS3"/>
+                    <constraint firstItem="DVc-cS-IrE" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="qTe-Fs-B3m"/>
+                    <constraint firstAttribute="bottom" secondItem="DVc-cS-IrE" secondAttribute="bottom" constant="45" id="qyL-yO-auI"/>
+                    <constraint firstItem="sQr-ag-Mqk" firstAttribute="leading" secondItem="tVH-XQ-oMe" secondAttribute="trailing" constant="26" id="sve-CI-Tod"/>
+                </constraints>
             </view>
             <point key="canvasLocation" x="427" y="13.5"/>
         </window>
@@ -137,7 +172,7 @@
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="427.5" y="374.5"/>
+            <point key="canvasLocation" x="635.5" y="336.5"/>
         </window>
     </objects>
     <resources>

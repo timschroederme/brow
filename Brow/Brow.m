@@ -108,17 +108,46 @@
     [toggleSyncButton setSelectedSegment:0]; // 0 = ON
 }
 
+-(float)preferenceWindowWidth
+{
+    float result = 0.0;
+    NSMutableArray *windows = (NSMutableArray *)CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
+    NSString *appName = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    BOOL foundWidth = NO;
+    for (NSDictionary *window in windows) {
+        NSString *owner = [window objectForKey:@"kCGWindowOwnerName"];
+        if ([appName isEqualToString: owner] && !foundWidth) {
+            foundWidth = YES;
+            NSDictionary *bounds = [window objectForKey:@"kCGWindowBounds"];
+            result = [[bounds valueForKey:@"Width"] floatValue];
+        }
+    }
+    if (!foundWidth) {  // Required as the window name returned by Quartz is sometimes abbreviated
+        for (NSDictionary *window in windows) {
+            NSString *owner = [window objectForKey:@"kCGWindowOwnerName"];
+            if ([appName containsString:owner] && !foundWidth) {
+                foundWidth = YES;
+                NSDictionary *bounds = [window objectForKey:@"kCGWindowBounds"];
+                result = [[bounds valueForKey:@"Width"] floatValue];
+            }
+        }
+    }
+    return result;
+}
+
 #pragma mark -
 #pragma mark Main Event Handling Methods
 
-- (void)awakeFromNib
-{
-    NSString *contentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"rtf"];
-    [aboutText readRTFDFromFile:contentPath];
-}
-
 - (void)mainViewDidLoad
 {
+    // Adjust width of the pref pane according to the actual size of the system preference window
+    NSSize size = self.mainView.frame.size;
+    size.width = [self preferenceWindowWidth];
+    [[self mainView] setFrameSize:size];
+
+    NSString *contentPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"rtf"];
+    [aboutText readRTFDFromFile:contentPath];
+
     // Check if pref pane is opened the first time
     NSString *key = @"browAlreadyInstalled"; // defaults delete com.apple.systempreferences browAlreadyInstalled to reset
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults]; // will be stored in com.apple.systempreferences
