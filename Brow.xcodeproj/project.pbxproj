@@ -42,6 +42,7 @@
 		229E51981D32707F00A44763 /* TSLaunchDController.h in Headers */ = {isa = PBXBuildFile; fileRef = 229E51961D32707F00A44763 /* TSLaunchDController.h */; };
 		229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
 		229E519A1D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
+		22ECAD5C1D32CA3700302E9C /* about.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 22ECAD5B1D32CA3700302E9C /* about.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		225143F11D2AF9CF005353F1 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		229E51961D32707F00A44763 /* TSLaunchDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLaunchDController.h; sourceTree = "<group>"; };
 		229E51971D32707F00A44763 /* TSLaunchDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLaunchDController.m; sourceTree = "<group>"; };
+		22ECAD5B1D32CA3700302E9C /* about.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 				220383161D200DCB00087E41 /* Brow.h */,
 				220383171D200DCB00087E41 /* Brow.m */,
 				2203836A1D2055FB00087E41 /* com.timschroeder.brow-helper.plist */,
+				22ECAD5B1D32CA3700302E9C /* about.rtf */,
 			);
 			path = Brow;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				2200D6AC1D304EDF00F5186B /* Brow.app in Resources */,
 				2236A49C1D1ED6F100C102CE /* brow-icon.png in Resources */,
 				2236A49B1D1ED6F100C102CE /* brow-icon@2x.png in Resources */,
+				22ECAD5C1D32CA3700302E9C /* about.rtf in Resources */,
 				2203836B1D2055FB00087E41 /* com.timschroeder.brow-helper.plist in Resources */,
 				220382D81D1F24AC00087E41 /* brow.iconset in Resources */,
 				2236A4921D1ED65500C102CE /* Brow.xib in Resources */,
