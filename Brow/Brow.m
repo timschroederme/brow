@@ -110,30 +110,21 @@
 
 -(float)preferenceWindowWidth
 {
-    float result = 0.0;
+    float result = 668.0;  // default for English language
     NSMutableArray *windows = (NSMutableArray *)CFBridgingRelease(CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
-    NSString *appName = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    int myProcessIdentifier = [[NSProcessInfo processInfo] processIdentifier];
     BOOL foundWidth = NO;
     for (NSDictionary *window in windows) {
-        NSString *owner = [window objectForKey:@"kCGWindowOwnerName"];
-        if ([appName isEqualToString: owner] && !foundWidth) {
+        int windowProcessIdentifier = [[window objectForKey:@"kCGWindowOwnerPID"] intValue];
+        if ((myProcessIdentifier == windowProcessIdentifier) && (!foundWidth)) {
             foundWidth = YES;
             NSDictionary *bounds = [window objectForKey:@"kCGWindowBounds"];
             result = [[bounds valueForKey:@"Width"] floatValue];
         }
     }
-    if (!foundWidth) {  // Required as the window name returned by Quartz is sometimes abbreviated
-        for (NSDictionary *window in windows) {
-            NSString *owner = [window objectForKey:@"kCGWindowOwnerName"];
-            if ([appName containsString:owner] && !foundWidth) {
-                foundWidth = YES;
-                NSDictionary *bounds = [window objectForKey:@"kCGWindowBounds"];
-                result = [[bounds valueForKey:@"Width"] floatValue];
-            }
-        }
-    }
     return result;
 }
+
 
 #pragma mark -
 #pragma mark Main Event Handling Methods
