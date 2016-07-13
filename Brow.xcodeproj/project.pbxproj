@@ -39,6 +39,7 @@
 		224234F91D36961D0072226D /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 224234F81D36961D0072226D /* Constants.h */; };
 		224234FC1D3696250072226D /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 224234FA1D3696250072226D /* TSLogger.m */; };
 		224234FD1D3696250072226D /* TSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 224234FB1D3696250072226D /* TSLogger.h */; };
+		224234FE1D3696D40072226D /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 224234FA1D3696250072226D /* TSLogger.m */; };
 		225143F21D2AF9CF005353F1 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225143F11D2AF9CF005353F1 /* ApplicationServices.framework */; };
 		229E51981D32707F00A44763 /* TSLaunchDController.h in Headers */ = {isa = PBXBuildFile; fileRef = 229E51961D32707F00A44763 /* TSLaunchDController.h */; };
 		229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
@@ -404,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				224234FE1D3696D40072226D /* TSLogger.m in Sources */,
 				221453101D21D1540065494E /* FMDatabasePool.m in Sources */,
 				221452E21D21CEB50065494E /* TSFirefoxConnector.m in Sources */,
 				221453111D21D1540065494E /* FMDatabaseQueue.m in Sources */,
