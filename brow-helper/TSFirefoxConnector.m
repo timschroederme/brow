@@ -73,12 +73,12 @@ static TSFirefoxConnector *_sharedConnector = nil;
 -(NSString*)fullBookmarkPathWithFileName:(BOOL)withFileName
 {
     
-    // Firefox-Bookmark-Pfad vorbereiten
+    // Prepare path and check if bookmark file exists
     NSString *path;
     path = [[self bookmarkPath] path];
     NSError *error;
     
-    // Profiles.ini lesen
+    // Parse Profiles.ini
     NSString *iniPath;
     iniPath = [path stringByAppendingPathComponent:@"profiles.ini"];
     NSString *iniString;
@@ -100,7 +100,7 @@ static TSFirefoxConnector *_sharedConnector = nil;
     
     profileName = [profileName substringToIndex:range.location];
     
-    //Vorbereitung des Bookmark-Pfades abschließen
+    // Finalize things
     path = [path stringByAppendingFormat:@"/%@", profileName];
     if (withFileName) path = [path stringByAppendingFormat:@"/places.sqlite"];
     

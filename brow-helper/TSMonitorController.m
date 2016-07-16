@@ -331,6 +331,7 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     // Retrieve path of bookmark file
     NSString *fullPath;
     fullPath = [[TSFirefoxConnector sharedConnector] fullBookmarkPathWithFileName:NO];
+    if (!fullPath) return;
     
     // Start Monitoring
     NSArray *firefoxBookmarkFiles = [[TSFirefoxConnector sharedConnector] bookmarkFiles];
