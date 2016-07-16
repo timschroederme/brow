@@ -72,6 +72,12 @@ static TSLaunchDController *_sharedController = nil;
     [self removeLaunchdPlistFileAtPath:path];
     
     // Copy plist file
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) { // Create target dir if not present
+        [[NSFileManager defaultManager] createDirectoryAtPath:[path stringByDeletingLastPathComponent]
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:nil];
+    }
     [pList writeToURL:[NSURL fileURLWithPath:path] atomically:YES];
 
     // Load service
