@@ -113,13 +113,18 @@ static TSChromeConnector *_sharedConnector = nil;
 
 -(NSArray*)profileNames
 {
+    NSArray *result;
     NSData *chromeData = [NSData dataWithContentsOfFile:[self preferencesFilePath]];
     NSError *error;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:chromeData
                                                          options:NSJSONReadingMutableContainers
                                                            error:&error];
-    NSDictionary *profiles = [[dict objectForKey:@"profile"] objectForKey:@"info_cache"];
-    NSArray *result = [profiles allKeys];
+    if (dict) {
+        NSDictionary *profiles = [[dict objectForKey:@"profile"] objectForKey:@"info_cache"];
+        result = [profiles allKeys];
+    } else {
+        result = nil;
+    }
     TSLog (@"Chrome profiles: %@", result);
     return (result);
 }
