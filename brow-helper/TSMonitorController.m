@@ -272,11 +272,16 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     if (chromeMonitoringIsActive) return;
     
     // Start Monitoring
+    chromeMonitoringIsActive = YES;
     if (chromeStreams) {
         [chromeStreams removeAllObjects];
     } else {
         chromeStreams = [NSMutableArray arrayWithCapacity:0];
     }
+    
+    // Return if Chrome is not installed
+    if (![[TSChromeConnector sharedConnector] isInstalled]) return;
+    
     NSArray *bookmarkFilePaths = [[TSChromeConnector sharedConnector] bookmarkFileDirectories];
     for (id path in bookmarkFilePaths)
     {
@@ -289,7 +294,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         streamObject.isPathStream = YES;
         [chromeStreams addObject:streamObject];
     }
-    chromeMonitoringIsActive = YES;
 }
 
 -(void)stopChromeMonitoring
@@ -314,11 +318,15 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     if (firefoxMonitoringIsActive) return;
     
     // Start Monitoring
+    firefoxMonitoringIsActive = YES;
     if (firefoxStreams) {
         [firefoxStreams removeAllObjects];
     } else {
         firefoxStreams = [NSMutableArray arrayWithCapacity:0];
     }
+    
+    // Return if Firefox is not installed
+    if (![[TSFirefoxConnector sharedConnector] isInstalled]) return;
     
     // Retrieve path of bookmark file
     NSString *fullPath;
@@ -345,7 +353,6 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
         streamObject.lastChangeDate = nil;
         [firefoxStreams addObject:streamObject];
     }
-    firefoxMonitoringIsActive = YES;
 }
 
 -(void)stopFirefoxMonitoring
