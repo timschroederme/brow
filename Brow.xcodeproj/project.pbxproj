@@ -185,8 +185,8 @@
 		220AC26F1D292F0F003C8079 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				224234FA1D3696250072226D /* TSLogger.m */,
 				224234FB1D3696250072226D /* TSLogger.h */,
+				224234FA1D3696250072226D /* TSLogger.m */,
 			);
 			name = Logging;
 			sourceTree = "<group>";
