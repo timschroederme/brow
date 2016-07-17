@@ -12,6 +12,8 @@
 #import "TSBookmark.h"
 #import "Constants.h"
 #import "AppDelegate.h"
+#import "NSFileManager+Extensions.h"
+#import "NSString+Extensions.h"
 #import "TSLogger.h"
 
 @implementation TSSyncController
@@ -47,44 +49,6 @@ static TSSyncController *_sharedController = nil;
         syncInProgress = NO;
     }
     return (self);
-}
-
-
-#pragma mark -
-#pragma mark Internal Helper Methods
-
-// Returns a sting representing this filename transformed (if neccesary) to make
-// a valid (Mac OS X) filename.
-- (NSString *) stringByMakingFileNameValid:(NSString *)fileName
-{
-    NSMutableString * validFileName = [NSMutableString stringWithString:fileName];
-    if (!validFileName || [validFileName isEqualToString:@""]) {
-        return @"untitled";
-    }
-    // remove initial period chars "."
-    if ([validFileName hasPrefix:@"."]) {
-        NSRange dotRange = [validFileName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
-        [validFileName deleteCharactersInRange:dotRange];
-    }
-    // remove any colon chars ":" (same as webloc creation behaviour)
-    [validFileName replaceOccurrencesOfString:@":" withString:@"" options:0 range:NSMakeRange(0, [validFileName length])];
-    // this may lead to spaces at either end which need trimming
-    validFileName = [[validFileName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] mutableCopy];
-    
-    // if there is nothing left return default value
-    if ([validFileName isEqualToString:@""]) {
-        return @"untitled";
-    }
-    // replace other disallowed Mac OS X characters
-    [validFileName replaceOccurrencesOfString:@"/" withString:@"-" options:0 range:NSMakeRange(0, [validFileName length])];
-    
-    // if grater than 102 chars reduce to 101 and add elipses
-    if ([validFileName length] > 102) {
-        [validFileName deleteCharactersInRange:NSMakeRange(100, [validFileName length]-100)];
-        [validFileName appendString:@"…"];
-    }
-    
-    return [validFileName copy];
 }
 
 
@@ -135,54 +99,6 @@ static TSSyncController *_sharedController = nil;
     return (path);
 }
 
--(void)createBookmarkFileForBookmark:(TSBookmark*)bookmark
-                              atPath:(NSString*)path
-                          forBrowser:(NSString*)browser
-{
-    // Create output directory if necessary
-    BOOL fileExists;
-    fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
-    if (!fileExists) {
-        NSError *error;
-        [[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error];
-        if (error) TSLog (@"Error while trying to create Dir: %@", error);
-    }
-    
-    // Create bookmark data
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
-    [dict setValue:[bookmark title] forKey:BOOKMARK_KEY_NAME];
-    [dict setValue:[[bookmark URL] absoluteString] forKey:BOOKMARK_KEY_URL];
-    [dict setValue:browser forKey:BOOKMARK_KEY_BROWSER];
-    
-    // Write data to file
-    NSData *xmlData;
-    NSError *error;
-    xmlData = [NSPropertyListSerialization dataWithPropertyList:dict
-                                                         format:NSPropertyListXMLFormat_v1_0
-                                                        options:0
-                                                          error:&error];
-    if ((error) || (!xmlData)) {
-        TSLog (@"Error while trying to save bookmark file: %@", error);
-        return;
-    }
-    NSString *title = [self stringByMakingFileNameValid:[bookmark title]];
-    NSString *extension = @"brow";
-    path = [path stringByAppendingFormat:@"/%@.%@", title, extension];
-    [xmlData writeToFile:path
-              atomically:NO];
-    TSLog (@"Writing bookmark to path %@", path);
-    
-    // Hide file extension
-    NSDictionary* attributes = [NSDictionary dictionaryWithObject:
-                                [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden];
-    [[NSFileManager defaultManager] setAttributes:attributes
-                                     ofItemAtPath:path
-                                            error:nil];
-}
-
 
 #pragma mark -
 #pragma mark Public Sync Methods
@@ -203,9 +119,7 @@ static TSSyncController *_sharedController = nil;
             NSInteger counter = 0;
             for (TSBookmark *bookmark in bookmarks) {
                 counter++;
-                [self createBookmarkFileForBookmark:bookmark
-                                             atPath:outputURLPath
-                                         forBrowser:FIREFOX];
+                [bookmark writeBookMarkToFileAtPath:outputURLPath];
             }
             TSLog (@"Synced %li Firefox bookmarks.", (long)counter);
         });
@@ -233,9 +147,7 @@ static TSSyncController *_sharedController = nil;
             NSInteger counter = 0;
             for (TSBookmark *bookmark in bookmarks) {
                 counter++;
-                [self createBookmarkFileForBookmark:bookmark
-                                             atPath:outputURLPath
-                                         forBrowser:CHROME];
+                [bookmark writeBookMarkToFileAtPath:outputURLPath];
             }
             TSLog (@"Synced %li Chrome bookmarks.", (long)counter);
         });

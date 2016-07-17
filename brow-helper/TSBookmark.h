@@ -11,6 +11,8 @@
 
 @interface TSBookmark : NSObject
 
+-(BOOL)writeBookMarkToFileAtPath:(NSString*)path;
+
 @property (retain) NSString *idNo;
 @property (retain) NSString *parent;
 @property (retain) NSString *title;
