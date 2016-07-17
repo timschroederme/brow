@@ -16,6 +16,7 @@
 + (TSSyncController *)sharedController;
 -(void)syncFirefoxBookmarks;
 -(void)syncChromeBookmarks;
+-(void)deleteAllBookmarks;
 
 @property (assign) id delegate;
 

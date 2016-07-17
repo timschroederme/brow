@@ -157,5 +157,12 @@ static TSSyncController *_sharedController = nil;
     }
 }
 
+// Called by TSMonitorController when pref pane has been removed
+-(void)deleteAllBookmarks
+{
+    [self deleteChromeBookmarks];
+    [self deleteFirefoxBookmarks];
+}
+
 
 @end

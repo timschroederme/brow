@@ -193,8 +193,10 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
     // Check if the Brow Pref Pane is still around, otherwise terminate helper and remove it from launchd
     if (prefPaneIsMissing())
     {
-        TSLog (@"Pref Pane is missing, terminating helper and removing it from launchd");
+        TSLog (@"Pref Pane is missing, terminating helper and removing it from launchd..");
         [[TSLaunchDController sharedController] unLoadService:BROW_HELPER_UTI];
+        TSLog (@"Pref Pane is missing, removing all bookmarks..");
+        [[TSSyncController sharedController] deleteAllBookmarks];
         [NSApp terminate:nil];
     }
     
