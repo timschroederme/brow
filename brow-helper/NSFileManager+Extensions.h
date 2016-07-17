@@ -11,5 +11,6 @@
 @interface NSFileManager (Extensions)
 
 -(BOOL) createDirectory:(NSString*)path;
+-(void) hideFileExtensionOfFile:(NSString*)path;
 
 @end

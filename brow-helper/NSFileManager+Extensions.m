@@ -24,4 +24,13 @@
     return result;
 }
 
+-(void) hideFileExtensionOfFile:(NSString*)path
+{
+    NSDictionary* attributes = [NSDictionary dictionaryWithObject:
+                                [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden];
+    [[NSFileManager defaultManager] setAttributes:attributes
+                                     ofItemAtPath:path
+                                            error:nil];
+}
+
 @end

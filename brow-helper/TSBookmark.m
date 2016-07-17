@@ -91,12 +91,8 @@
     TSLog (@"Writing bookmark to path %@", path);
     
     // Hide file extension
-    NSDictionary* attributes = [NSDictionary dictionaryWithObject:
-                                [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden];
-    [[NSFileManager defaultManager] setAttributes:attributes
-                                     ofItemAtPath:path
-                                            error:nil];
-
+    [[NSFileManager defaultManager] hideFileExtensionOfFile:path];
+    
     return YES;
 }
 
