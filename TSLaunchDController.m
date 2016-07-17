@@ -7,6 +7,7 @@
 //
 
 #import "TSLaunchDController.h"
+#import "NSFileManager+Extensions.h"
 #import "TSLogger.h"
 
 @implementation TSLaunchDController
@@ -72,12 +73,7 @@ static TSLaunchDController *_sharedController = nil;
     [self removeLaunchdPlistFileAtPath:path];
     
     // Copy plist file
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) { // Create target dir if not present
-        [[NSFileManager defaultManager] createDirectoryAtPath:[path stringByDeletingLastPathComponent]
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:nil];
-    }
+    [[NSFileManager defaultManager] createDirectory:[path stringByDeletingLastPathComponent]];
     [pList writeToURL:[NSURL fileURLWithPath:path] atomically:YES];
 
     // Load service
