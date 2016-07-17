@@ -55,7 +55,7 @@
     {
         browserStringValue = CHROME;
     }
-    if ([self browser] == Chrome)
+    if ([self browser] == Firefox)
     {
         browserStringValue = FIREFOX;
     }
