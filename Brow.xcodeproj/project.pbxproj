@@ -41,6 +41,8 @@
 		224234FD1D3696250072226D /* TSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 224234FB1D3696250072226D /* TSLogger.h */; };
 		224234FE1D3696D40072226D /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 224234FA1D3696250072226D /* TSLogger.m */; };
 		225143F21D2AF9CF005353F1 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225143F11D2AF9CF005353F1 /* ApplicationServices.framework */; };
+		227E8FFD1D3BA9040086E2A7 /* NSFileManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 227E8FFC1D3BA9040086E2A7 /* NSFileManager+Extensions.m */; };
+		227E90001D3BAC190086E2A7 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 227E8FFF1D3BAC190086E2A7 /* NSString+Extensions.m */; };
 		229E51981D32707F00A44763 /* TSLaunchDController.h in Headers */ = {isa = PBXBuildFile; fileRef = 229E51961D32707F00A44763 /* TSLaunchDController.h */; };
 		229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
 		229E519A1D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
@@ -109,6 +111,10 @@
 		224234FA1D3696250072226D /* TSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLogger.m; sourceTree = "<group>"; };
 		224234FB1D3696250072226D /* TSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLogger.h; sourceTree = "<group>"; };
 		225143F11D2AF9CF005353F1 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		227E8FFB1D3BA9040086E2A7 /* NSFileManager+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Extensions.h"; sourceTree = "<group>"; };
+		227E8FFC1D3BA9040086E2A7 /* NSFileManager+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Extensions.m"; sourceTree = "<group>"; };
+		227E8FFE1D3BAC190086E2A7 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		227E8FFF1D3BAC190086E2A7 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		229E51961D32707F00A44763 /* TSLaunchDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLaunchDController.h; sourceTree = "<group>"; };
 		229E51971D32707F00A44763 /* TSLaunchDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLaunchDController.m; sourceTree = "<group>"; };
 		22ECAD5B1D32CA3700302E9C /* about.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about.rtf; sourceTree = "<group>"; };
@@ -263,6 +269,10 @@
 			children = (
 				221452E71D21CFD60065494E /* NSURL+Extensions.h */,
 				221452E81D21CFD60065494E /* NSURL+Extensions.m */,
+				227E8FFB1D3BA9040086E2A7 /* NSFileManager+Extensions.h */,
+				227E8FFC1D3BA9040086E2A7 /* NSFileManager+Extensions.m */,
+				227E8FFE1D3BAC190086E2A7 /* NSString+Extensions.h */,
+				227E8FFF1D3BAC190086E2A7 /* NSString+Extensions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +424,8 @@
 				2214530E1D21D1540065494E /* FMDatabase.m in Sources */,
 				2214530F1D21D1540065494E /* FMDatabaseAdditions.m in Sources */,
 				221452DF1D21CE940065494E /* TSChromeConnector.m in Sources */,
+				227E8FFD1D3BA9040086E2A7 /* NSFileManager+Extensions.m in Sources */,
+				227E90001D3BAC190086E2A7 /* NSString+Extensions.m in Sources */,
 				221453121D21D1540065494E /* FMResultSet.m in Sources */,
 				220AC2351D27F42A003C8079 /* TSStream.m in Sources */,
 				220383581D20286E00087E41 /* main.m in Sources */,
