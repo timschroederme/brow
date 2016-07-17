@@ -13,12 +13,12 @@
 -(BOOL) createDirectory:(NSString*)path
 {
     BOOL result = YES;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if (![self fileExistsAtPath:path]) {
         NSError *error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error];
+        [self createDirectoryAtPath:path
+        withIntermediateDirectories:YES
+                         attributes:nil
+                              error:&error];
         if (error) result = NO;
     }
     return result;
@@ -28,9 +28,9 @@
 {
     NSDictionary* attributes = [NSDictionary dictionaryWithObject:
                                 [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden];
-    [[NSFileManager defaultManager] setAttributes:attributes
-                                     ofItemAtPath:path
-                                            error:nil];
+    [self setAttributes:attributes
+           ofItemAtPath:path
+                  error:nil];
 }
 
 @end

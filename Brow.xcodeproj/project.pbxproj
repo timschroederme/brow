@@ -41,8 +41,9 @@
 		224234FD1D3696250072226D /* TSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 224234FB1D3696250072226D /* TSLogger.h */; };
 		224234FE1D3696D40072226D /* TSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 224234FA1D3696250072226D /* TSLogger.m */; };
 		225143F21D2AF9CF005353F1 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225143F11D2AF9CF005353F1 /* ApplicationServices.framework */; };
-		227E8FFD1D3BA9040086E2A7 /* NSFileManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 227E8FFC1D3BA9040086E2A7 /* NSFileManager+Extensions.m */; };
 		227E90001D3BAC190086E2A7 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 227E8FFF1D3BAC190086E2A7 /* NSString+Extensions.m */; };
+		227E90011D3BB6E80086E2A7 /* NSFileManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 227E8FFC1D3BA9040086E2A7 /* NSFileManager+Extensions.m */; };
+		227E90021D3BB6F50086E2A7 /* NSFileManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 227E8FFC1D3BA9040086E2A7 /* NSFileManager+Extensions.m */; };
 		229E51981D32707F00A44763 /* TSLaunchDController.h in Headers */ = {isa = PBXBuildFile; fileRef = 229E51961D32707F00A44763 /* TSLaunchDController.h */; };
 		229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
 		229E519A1D32707F00A44763 /* TSLaunchDController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229E51971D32707F00A44763 /* TSLaunchDController.m */; };
@@ -424,12 +425,12 @@
 				2214530E1D21D1540065494E /* FMDatabase.m in Sources */,
 				2214530F1D21D1540065494E /* FMDatabaseAdditions.m in Sources */,
 				221452DF1D21CE940065494E /* TSChromeConnector.m in Sources */,
-				227E8FFD1D3BA9040086E2A7 /* NSFileManager+Extensions.m in Sources */,
 				227E90001D3BAC190086E2A7 /* NSString+Extensions.m in Sources */,
 				221453121D21D1540065494E /* FMResultSet.m in Sources */,
 				220AC2351D27F42A003C8079 /* TSStream.m in Sources */,
 				220383581D20286E00087E41 /* main.m in Sources */,
 				221452DC1D21CE430065494E /* TSBookmark.m in Sources */,
+				227E90011D3BB6E80086E2A7 /* NSFileManager+Extensions.m in Sources */,
 				221452D21D21C71F0065494E /* TSBrowserConnector.m in Sources */,
 				221452E51D21CEE10065494E /* TSSyncController.m in Sources */,
 				220383551D20286E00087E41 /* AppDelegate.m in Sources */,
@@ -442,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227E90021D3BB6F50086E2A7 /* NSFileManager+Extensions.m in Sources */,
 				229E51991D32707F00A44763 /* TSLaunchDController.m in Sources */,
 				224234FC1D3696250072226D /* TSLogger.m in Sources */,
 				220383191D200DCB00087E41 /* Brow.m in Sources */,
@@ -557,6 +559,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -595,6 +598,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 			};
 			name = Release;
