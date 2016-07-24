@@ -109,7 +109,7 @@ static TSSyncController *_sharedController = nil;
     if (![[TSFirefoxConnector sharedConnector] isInstalled]) return;
     [self deleteFirefoxBookmarks];
     NSSet *bookmarks = [[TSFirefoxConnector sharedConnector] getBookmarks];
-    if (bookmarks) {
+    if ((bookmarks) && ([bookmarks count] > 0)) {
         
         // Prepare output path
         NSString *outputURLPath = [self firefoxOutputPath];
@@ -137,7 +137,7 @@ static TSSyncController *_sharedController = nil;
     [self deleteChromeBookmarks];
     
     NSSet *bookmarks = [[TSChromeConnector sharedConnector] getBookmarks];
-    if (bookmarks) {
+    if ((bookmarks) && ([bookmarks count] > 0)) {
         
         // Prepare output path
         NSString *outputURLPath = [self chromeOutputPath];
