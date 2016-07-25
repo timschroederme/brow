@@ -60,19 +60,6 @@
     return ([NSDictionary dictionaryWithDictionary:mutablePlist]);
 }
 
--(void)registerHelperUTIScheme
-{
-    NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
-    if (url) {
-        LSRegisterURL((__bridge CFURLRef)url, true);
-        OSStatus stat;
-        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)BROW_HELPER_UTI, kLSRolesAll, (__bridge CFStringRef)BROW_HELPER_UTI);
-        TSLog (@"Registered UTI Scheme with Launch Services");
-    } else {
-        TSLog (@"Could not register UTI Scheme with Launch Services");
-    }
-}
-
 -(void)startHelper
 {
     TSLog (@"Brow: startHelper");
@@ -80,9 +67,6 @@
     // Load brow-helper agent in launchd (will start automatically)
     [[TSLaunchDController sharedController] loadService:BROW_HELPER_UTI
                                               withPList:[self helperPlist]];
-    
-    // Register helper UTI scheme with Launch Services
-   // [self registerHelperUTIScheme]; TEMP
 }
 
 -(void)stopHelper
