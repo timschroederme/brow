@@ -35,6 +35,7 @@
 {
     NSString *helperPath = [NSString stringWithFormat:@"%@/Contents/Resources/Brow.app",
                             [[self bundle] bundlePath]];
+    TSLog (@"Helper App Path: %@", helperPath);
     return (helperPath);
 }
 
@@ -70,7 +71,6 @@
     } else {
         TSLog (@"Could not register UTI Scheme with Launch Services");
     }
-
 }
 
 -(void)startHelper
@@ -82,7 +82,7 @@
                                               withPList:[self helperPlist]];
     
     // Register helper UTI scheme with Launch Services
-    [self registerHelperUTIScheme];
+   // [self registerHelperUTIScheme]; TEMP
 }
 
 -(void)stopHelper
