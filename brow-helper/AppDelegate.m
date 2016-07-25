@@ -21,11 +21,35 @@
 
 @implementation AppDelegate
 
+-(NSString*)helperAppPath
+{
+    NSString *helperPath = [NSString stringWithFormat:@"%@/Contents/Resources/Brow.app",
+                            [[NSBundle mainBundle] bundlePath]];
+    TSLog (@"Helper App Path: %@", helperPath);
+    return (helperPath);
+}
+
+
+-(void)registerHelperUTIScheme
+{
+    NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
+    if (url) {
+        OSStatus stat;
+        stat = LSRegisterURL((__bridge CFURLRef)url, true);
+        TSLog (@"Registered UTI Scheme with LSRegisterURL, result is %i", stat);
+        stat = LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)BROW_HELPER_UTI, kLSRolesAll, (__bridge CFStringRef)BROW_HELPER_UTI);
+        TSLog (@"Registered UTI Scheme with LSSetDefaultRoleHandlerForContentType, result is %i", stat);
+    } else {
+        TSLog (@"Could not register UTI Scheme with Launch Services");
+    }
+}
+
 //
 // Main Event Handling Methods
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     TSLog(@"applicationDidFinishLaunching");
+    [self registerHelperUTIScheme];
     TSMonitorController *monitorController = [TSMonitorController sharedController];
     [monitorController startFirefoxMonitoring];
     [monitorController startChromeMonitoring];
