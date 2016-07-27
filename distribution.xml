@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="2">
+    <pkg-ref id="com.timschroeder.Brow"/>
+    <options customize="never" require-scripts="false" rootVolumeOnly="true"/>
+    <domains enable_currentUserHome="true" />
+    <volume-check>
+        <allowed-os-versions>
+            <os-version min="10.10"/>
+        </allowed-os-versions>
+    </volume-check>
+    <choices-outline>
+        <line choice="default">
+            <line choice="com.timschroeder.Brow"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="com.timschroeder.Brow" visible="false">
+        <pkg-ref id="com.timschroeder.Brow"/>
+    </choice>
+    <title>Brow</title>
+    <pkg-ref id="com.timschroeder.Brow" version="0" onConclusion="none">BrowComponent.pkg</pkg-ref>
+</installer-gui-script>
