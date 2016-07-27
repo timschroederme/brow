@@ -254,6 +254,9 @@ void fsevents_callback(ConstFSEventStreamRef streamRef,
 {
     if (stream != NULL) {
         FSEventStreamStop (stream);
+        FSEventStreamUnscheduleFromRunLoop (stream,
+                                            CFRunLoopGetCurrent(),
+                                            kCFRunLoopDefaultMode);
         FSEventStreamInvalidate(stream);
         FSEventStreamRelease (stream);
     }
