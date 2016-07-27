@@ -33,6 +33,7 @@
 -(void)registerHelperUTIScheme
 {
     NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
+    TSLog (@"Registering helper URL %@ with Launch Services..", url);
     if (url) {
         OSStatus stat;
         stat = LSRegisterURL((__bridge CFURLRef)url, true);
