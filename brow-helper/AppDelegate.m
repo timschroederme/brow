@@ -21,18 +21,9 @@
 
 @implementation AppDelegate
 
--(NSString*)helperAppPath
-{
-    NSString *helperPath = [NSString stringWithFormat:@"%@/Contents/Resources/Brow.app",
-                            [[NSBundle mainBundle] bundlePath]];
-    TSLog (@"Helper App Path: %@", helperPath);
-    return (helperPath);
-}
-
-
 -(void)registerHelperUTIScheme
 {
-    NSURL *url = [NSURL fileURLWithPath:[self helperAppPath]];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
     TSLog (@"Registering helper URL %@ with Launch Services..", url);
     if (url) {
         OSStatus stat;
