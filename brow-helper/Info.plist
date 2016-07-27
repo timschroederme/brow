@@ -32,33 +32,33 @@
 	<string>NSApplication</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
-    <key>UTExportedTypeDeclarations</key>
-    <array>
-        <dict>
-            <key>UTTypeConformsTo</key>
-            <array>
-                <string>com.apple.web-internet-location</string>
-                <string>com.apple.internet-location</string>
-                <string>public.stored-url</string>
-                <string>public.data</string>
-                <string>public.item</string>
-            </array>
-            <key>UTTypeIconFile</key>
-            <string>brow-helper.icns</string>
-            <key>UTTypeDescription</key>
-            <string>Brow Bookmark</string>
-            <key>UTTypeIdentifier</key>
-            <string>com.timschroeder.brow-helper</string>
-            <key>UTTypeReferenceURL</key>
-            <string>http://www.company.com/yourproduct</string>
-            <key>UTTypeTagSpecification</key>
-            <dict>
-                <key>public.filename-extension</key>
-                <array>
-                    <string>brow</string>
-                </array>
-            </dict>
-        </dict>
-    </array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.web-internet-location</string>
+				<string>com.apple.internet-location</string>
+				<string>public.stored-url</string>
+				<string>public.data</string>
+				<string>public.item</string>
+			</array>
+			<key>UTTypeIconFile</key>
+			<string>brow-helper.icns</string>
+			<key>UTTypeDescription</key>
+			<string>Brow Bookmark</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.timschroeder.brow-helper</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.timschroeder.net/brow</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>brow</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
