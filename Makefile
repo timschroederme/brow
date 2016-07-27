@@ -6,7 +6,7 @@ DMGFILE = $(PROGRAM).dmg
 PRODUCT = $(DISTDIR)/$(PROGRAM).pkg
 COMPONENT = $(DEPSDIR)/$(PROGRAM)Component.pkg
 COMPONENT_PFILE = $(PROGRAM).plist
-DISTRIBUTION_FILE = distribution.dist
+DISTRIBUTION_FILE = distribution.xml
 REQUIREMENTS = requirements.plist
 IDENTIFIER = com.timschroeder.Brow
 

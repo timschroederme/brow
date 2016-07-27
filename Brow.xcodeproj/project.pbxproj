@@ -119,6 +119,10 @@
 		229E51961D32707F00A44763 /* TSLaunchDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLaunchDController.h; sourceTree = "<group>"; };
 		229E51971D32707F00A44763 /* TSLaunchDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLaunchDController.m; sourceTree = "<group>"; };
 		22ECAD5B1D32CA3700302E9C /* about.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about.rtf; sourceTree = "<group>"; };
+		22ED3AE71D48BE9E00AE0210 /* Brow.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Brow.plist; sourceTree = "<group>"; };
+		22ED3AE91D48BEB200AE0210 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		22ED3AEA1D48BEB200AE0210 /* requirements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = requirements.plist; sourceTree = "<group>"; };
+		22ED3AEC1D48BF2000AE0210 /* distribution.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = distribution.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +226,7 @@
 		2236A47D1D1ED65500C102CE = {
 			isa = PBXGroup;
 			children = (
+				22ED3AE61D48BE8200AE0210 /* Make */,
 				229E519B1D3280B900A44763 /* Constants */,
 				229E51951D32706B00A44763 /* LaunchD */,
 				220AC26F1D292F0F003C8079 /* Logging */,
@@ -309,6 +314,17 @@
 				224234F81D36961D0072226D /* Constants.h */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		22ED3AE61D48BE8200AE0210 /* Make */ = {
+			isa = PBXGroup;
+			children = (
+				22ED3AE71D48BE9E00AE0210 /* Brow.plist */,
+				22ED3AE91D48BEB200AE0210 /* Makefile */,
+				22ED3AEA1D48BEB200AE0210 /* requirements.plist */,
+				22ED3AEC1D48BF2000AE0210 /* distribution.xml */,
+			);
+			name = Make;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +528,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-helper";
 				PRODUCT_NAME = Brow;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -531,6 +548,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.timschroeder.brow-helper";
 				PRODUCT_NAME = Brow;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -623,12 +641,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Brow/Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				INSTALL_PATH = /Library/PreferencePanes;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timschroeder.Brow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,12 +660,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Brow/Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				INSTALL_PATH = /Library/PreferencePanes;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.timschroeder.Brow;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -9,30 +9,35 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>brow-clt-bundle.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>brow-clt.xcscheme</key>
+		<key>Copy of Brow.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>brow-helper.xcscheme</key>
+		<key>brow-clt-bundle.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>brow-importer.xcscheme</key>
+		<key>brow-clt.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>brow-helper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>com.timschroeder.brow-importer.xcscheme</key>
+		<key>brow-importer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>com.timschroeder.brow-importer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

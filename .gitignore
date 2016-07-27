@@ -1,1 +1,4 @@
 Brow.dmg
+build/
+deps/
+dist/
