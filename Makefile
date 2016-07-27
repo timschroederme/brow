@@ -1,6 +1,7 @@
 PROGRAM = Brow
 DISTDIR = ./dist
 DEPSDIR = ./deps
+BUILDDIR = ./build
 BINARIES = /tmp/$(PROGRAM).dst
 DMGFILE = $(PROGRAM).dmg
 PRODUCT = $(DISTDIR)/$(PROGRAM).pkg
@@ -74,6 +75,7 @@ compfiles : $(BINARIES)
 clean :
 	-rm -f $(DMGFILE) $(PRODUCT) $(COMPONENT)
 	-rm -rf $(BINARIES)
+	-rm -rf $(BUILDDIR)
 
 .PHONY : distclean
 distclean :
