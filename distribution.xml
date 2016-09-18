@@ -2,7 +2,7 @@
 <installer-gui-script minSpecVersion="2">
     <pkg-ref id="com.timschroeder.Brow"/>
     <options customize="never" require-scripts="false" rootVolumeOnly="true"/>
-    <domains enable_currentUserHome="true" />
+    <domains enable_currentUserHome="true" enable_localSystem="false"/>
     <volume-check>
         <allowed-os-versions>
             <os-version min="10.10"/>

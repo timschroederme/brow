@@ -30,5 +30,34 @@
 	<string>Brow</string>
 	<key>NSPrincipalClass</key>
 	<string>Brow</string>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>com.apple.web-internet-location</string>
+                <string>com.apple.internet-location</string>
+                <string>public.stored-url</string>
+                <string>public.data</string>
+                <string>public.item</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>Brow Bookmark</string>
+            <key>UTTypeIconFile</key>
+            <string>brow-helper.icns</string>
+            <key>UTTypeIdentifier</key>
+            <string>com.timschroeder.brow-helper</string>
+            <key>UTTypeReferenceURL</key>
+            <string>https://www.timschroeder.net/brow</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>brow</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+
 </dict>
 </plist>
